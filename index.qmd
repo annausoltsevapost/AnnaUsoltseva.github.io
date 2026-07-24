@@ -1,13 +1,13 @@
 ---
-title: "Your Name"
+title: "Anna Usoltseva"
 toc: false
-image: "your photo.jpg"
+image: "Anna Usoltseva.jpg"
 about:
   template: trestles
   links:
   - text: GitHub
-    href: link
-  - text: email
+    href: AnnaUsoltseva.github.io
+  - text: annausoltsevapost@gmail.com
     href:  link
 ---
 
@@ -21,14 +21,14 @@ Welcome to my research profile website. I'm a student in the Intro to Reproducib
 
 Replace this section with information about yourself:
 
-- **Name:** Your Name Here
-- **Institution:** Your University
-- **Research Interests:** Add your research interests here
-- **Email:** your.email@university.edu
+- **Name:** Anna S. Usoltseva
+- **Institution:** OUHC
+- **Research Interests:** Physiology
+- **Email:** anna-usoltseva@ou.edu
 
 ## My Research
 
-I'm interested in understanding [your topic area]. Through this course, I've learned how to:
+My research focuses on understanding diabetic retinopathy. Through this course, I've learned how to:
 
 - Use R for data analysis
 - Create reproducible research workflows

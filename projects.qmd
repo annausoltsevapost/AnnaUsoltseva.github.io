@@ -9,6 +9,7 @@ Here are my research projects and work:
 ## Final Report
 
 My final project for CELL 6351 - Intro to Reproducible Data Analysis Using R.
+Obesity has emerged as a major public health problem. Centers for Disease Control and Prevention (CDC) reported the prevalence rate of obesity in the United States as 40.3% during 2021 - 2023 period [1]. Unlike acute illnesses, the health consequences of obesity typically develop gradually. Obesity accelerates biological aging by promoting chronic low-grade inflammation, oxidative stress, and mitochondrial dysfunction, all of which contribute to the earlier onset of age-related diseases [2]. It increases the risk of numerous chronic conditions, including type 2 diabetes mellitus, cardiovascular disease, metabolic syndrome, hypertension, and certain types of cancers [3, 4]. In this project I want to test the relationship between lifestyle factors and obesity. I expect for example that regular physical activity and low calories intake are associated with lower obesity levels. Hypothesis (H1): Healthier lifestyle habits are associated with lower obesity rates. Null hypothesis (H0): There is no correlation between lifestyle and obesity. The findings may contribute to a better understanding of the problem and alter public health strategies.
 
 [**View Final Report** →](projects/final-report.qmd)
 
