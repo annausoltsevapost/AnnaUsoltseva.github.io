@@ -42,13 +42,7 @@ library(car)
 library(rstatix)
 library(dplyr)
 library(tidyr)
-library(multcompView)
 
-# Create some sample data
-data <- data.frame(
-  x = 1:10,
-  y = rnorm(10)
-)
 
 # Start
 getwd()
@@ -80,6 +74,92 @@ Obesity$Obesity <- factor(
 levels(Obesity$Obesity)
 table(Obesity$Obesity)
 
+ggplot(Obesity, aes(x = Obesity)) +
+  geom_bar(fill = "steelblue") +
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    vjust = -0.3,
+    size = 5
+  ) +
+  labs(
+    title = "Distribution of Obesity Levels",
+    x = "Obesity Level",
+    y = "Number of Participants"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+# FAMILY HISTORY
+table(Obesity$family_history)
+summary(Obesity$family_history)
+
+table_history <- table(
+  Obesity$family_history,
+  Obesity$Obesity
+)
+
+table_history
+
+chisq.test(table_history)
+
+ggplot(Obesity, aes(x = family_history, fill = family_history)) +
+  geom_bar() +
+  scale_fill_manual(values = c("no" = "skyblue",
+                               "yes" = "tomato")) +
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    vjust = -0.3,
+    color = "black",
+    size = 5
+  ) +
+  labs(
+    title = "Family History of Obesity",
+    x = "Family History",
+    y = "Number of Participants"
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
+
+#in each level
+
+ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
+  geom_bar(position = "dodge") +
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    position = position_dodge(width = 0.9),
+    vjust = -0.3,
+    size = 3.5
+  ) +
+  scale_fill_manual(
+    values = c(
+      "no" = "skyblue",
+      "yes" = "tomato"
+    )
+  ) +
+  labs(
+    title = "Obesity Level by Family History",
+    x = "Obesity Level",
+    y = "Number of Participants",
+    fill = "Family History"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+#PHYSICAL ACTIVITY
 table(Obesity$FAF)
 summary(Obesity$FAF)
 
@@ -167,23 +247,6 @@ ggplot(summary_df, aes(x = Obesity, y = Mean)) +
 Obesity %>%
   count(Obesity, Gender)
 
-
-# Put obesity categories in the correct order
-Obesity <- Obesity %>%
-  mutate(
-    Obesity = factor(
-      Obesity,
-      levels = c(
-        "Insufficient_Weight",
-        "Normal_Weight",
-        "Overweight_Level_I",
-        "Overweight_Level_II",
-        "Obesity_Type_I",
-        "Obesity_Type_II",
-        "Obesity_Type_III"
-      )
-    )
-  )
 
 # Create a NEW summary object
 summary_gender_plot <- Obesity %>%
@@ -307,6 +370,287 @@ ggplot(Obesity, aes(Age, FAF)) +
   facet_wrap(~Obesity, ncol = 2) +
   theme_classic()
     
+
+
+# HIGH CALORIC FOOD (FAVC)
+table(Obesity$FAVC)
+summary(Obesity$FAVC)
+
+table_FAVC <- table(
+  Obesity$FAVC,
+  Obesity$Obesity
+)
+
+table_FAVC
+
+chisq.test(table_FAVC)
+
+ggplot(Obesity, aes(x = FAVC, fill = FAVC)) +
+  geom_bar() +
+  scale_fill_manual(values = c("no" = "skyblue",
+                               "yes" = "tomato")) +
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    vjust = -0.3,
+    color = "black",
+    size = 5
+  ) +
+  labs(
+    title = "Frequency of High-Calorie Food Intake",
+    x = "Frequency of High-Calorie Food Intake",
+    y = "Number of Participants"
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
+
+#in each level
+
+ggplot(Obesity, aes(x = Obesity, fill = FAVC)) +
+  geom_bar(position = "dodge") +
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    position = position_dodge(width = 0.9),
+    vjust = -0.3,
+    size = 3.5
+  ) +
+  scale_fill_manual(
+    values = c(
+      "no" = "skyblue",
+      "yes" = "tomato"
+    )
+  ) +
+  labs(
+    title = "Obesity Level and Frequency of High-Calorie Food Intake",
+    x = "Obesity Level",
+    y = "Number of Participants",
+    fill = "High-Calorie Intake"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+# VEGETABLES INTAKE (FCVC)
+table(Obesity$FCVC)
+summary(Obesity$FCVC)
+
+
+# Normality
+hist(Obesity$FCVC,
+     breaks = 10,
+  col = "lightblue",
+  border = "black",
+  main = "Histogram of Vegetables Intake (FCVC)",
+  xlab = "Vegetables Intake (FCVC)")
+
+
+ggplot(Obesity, aes(sample = FCVC)) +
+  stat_qq() +
+  stat_qq_line(color = "red", linewidth = 1) +
+  labs(
+    title = "Q-Q Plot of Vegetable Intake (FCVC)",
+    x = "Theoretical Quantiles",
+    y = "Sample Quantiles"
+  ) +
+  theme_classic()
+
+shapiro.test(Obesity$FCVC)
+
+# Homogeneity of Variance
+leveneTest( FCVC ~ Obesity, data = Obesity)
+
+# Kruskal-Wallis rank sum test
+kruskal.test(FCVC ~ Obesity,
+             data = Obesity)
+
+# Pairwise multiple comparisons (Games–Howell adjusted p-values)
+games_howell_test(
+  data = Obesity,
+  FCVC ~ Obesity) %>%
+print(n = Inf, width = Inf)
+
+gh1_results <- games_howell_test(
+  data = Obesity,
+  FCVC ~ Obesity)
+
+view(gh1_results)
+
+
+# Make a plot
+
+#Create the summary table
+summary_df <- Obesity %>%
+  group_by(Obesity) %>%
+  summarise(
+    Mean = mean(FAF),
+    SD = sd(FAF),
+    n = n(),
+    SE = SD / sqrt(n),
+    CI = qt(0.975, n - 1) * SE,
+    .groups = "drop")
+
+summary_df
+
+# Plot the means with 95% confidence intervals
+ggplot(summary_df, aes(x = Obesity, y = Mean)) +
+  geom_col(fill = "steelblue", width = 0.7) +
+  geom_errorbar(
+    aes(
+      ymin = Mean - CI,
+      ymax = Mean + CI),
+    width = 0.2,
+    linewidth = 0.8) +
+  labs(
+    title = "Mean Physical Activity Across Obesity Levels",
+    x = "Obesity Level",
+    y = "Mean Physical Activity (FAF)"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      face = "bold"),
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1))
+
+# Gender
+
+Obesity %>%
+  count(Obesity, Gender)
+
+
+# Create a NEW summary object
+summary_gender_plot <- Obesity %>%
+  group_by(Obesity, Gender) %>%
+  summarise(
+    Mean = mean(FAF, na.rm = TRUE),
+    SD = sd(FAF, na.rm = TRUE),
+    n = sum(!is.na(FAF)),
+    SE = SD / sqrt(n),
+    CI = qt(0.975, df = n - 1) * SE,
+    .groups = "drop"
+  ) %>%
+  filter(n >= 10) %>%
+  droplevels()
+
+# Check that only 12 rows remain
+print(summary_gender_plot)
+
+# Create and save the NEW plot
+gender_plot <- ggplot(
+  summary_gender_plot,
+  aes(
+    x = Obesity,
+    y = Mean,
+    fill = Gender
+  )
+) +
+  geom_col(width = 0.8) +
+
+  geom_errorbar(
+    aes(
+      ymin = pmax(0, Mean - CI),
+      ymax = Mean + CI
+    ),
+    width = 0.2,
+    linewidth = 0.8
+  ) +
+
+  facet_grid(
+    cols = vars(Gender),
+    scales = "free_x",
+    space = "free_x"
+  ) +
+
+  scale_fill_manual(
+    values = c(
+      "Female" = "hotpink",
+      "Male" = "steelblue"
+    )
+  ) +
+
+  scale_x_discrete(
+    drop = TRUE,
+    labels = c(
+      "Insufficient_Weight" = "Insufficient",
+      "Normal_Weight" = "Normal",
+      "Overweight_Level_I" = "Overweight I",
+      "Overweight_Level_II" = "Overweight II",
+      "Obesity_Type_I" = "Obesity I",
+      "Obesity_Type_II" = "Obesity II",
+      "Obesity_Type_III" = "Obesity III"
+    )
+  ) +
+
+  scale_y_continuous(
+    breaks = seq(0, 2, by = 0.5),
+    expand = expansion(mult = c(0, 0.03))
+  ) +
+
+  coord_cartesian(ylim = c(0, 2)) +
+
+  labs(
+    title = "Mean Physical Activity Across Obesity Levels by Gender",
+    x = "Obesity Level",
+    y = "Mean Physical Activity (FAF)"
+  ) +
+
+  theme_classic() +
+
+  theme(
+    legend.position = "none",
+    plot.title = element_text(
+      hjust = 0.5,
+      face = "bold"
+    ),
+    strip.text = element_text(
+      face = "bold",
+      size = 11
+    ),
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1
+    )
+  )
+
+# Explicitly display the new plot
+print(gender_plot)
+
+
+#Age
+
+summary(Obesity$Age)
+
+ggplot(Obesity, aes(x = Obesity, y = Age, fill = Obesity)) +
+  geom_boxplot(alpha = 0.8) +
+  labs(
+    title = "Age Distribution Across Obesity Levels",
+    x = "Obesity Level",
+    y = "Age"
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+ggplot(Obesity, aes(Age, FAF)) +
+  geom_jitter(width = 0.25, height = 0.05, alpha = 0.35) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  facet_wrap(~Obesity, ncol = 2) +
+  theme_classic()
+    
+  
+
 ```
 
 
