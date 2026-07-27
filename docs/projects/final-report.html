@@ -9,7 +9,7 @@
 <meta name="author" content="Anna Usoltseva">
 <meta name="dcterms.date" content="2026-06-04">
 
-<title>Final Report: [Your Project Title] – My Research Profile</title>
+<title>Final Report: [Obesity] – My Research Profile</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#final-report-your-project-title" id="toc-final-report-your-project-title" class="nav-link active" data-scroll-target="#final-report-your-project-title">Final Report: [Your Project Title]</a>
+  <li><a href="#final-report-obesity" id="toc-final-report-obesity" class="nav-link active" data-scroll-target="#final-report-obesity">Final Report: [Obesity]</a>
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References:</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -180,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Final Report: [Your Project Title]</h1>
+<h1 class="title">Final Report: [Obesity]</h1>
 </div>
 
 
@@ -209,11 +209,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="final-report-your-project-title" class="level1">
-<h1>Final Report: [Your Project Title]</h1>
+<section id="final-report-obesity" class="level1">
+<h1>Final Report: [Obesity]</h1>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Replace this with an introduction to your research question or project. What are you investigating? Why does it matter?</p>
+<p>Obesity has emerged as a major public health problem. Centers for Disease Control and Prevention (CDC) reported the prevalence rate of obesity in the United States as 40.3% during 2021 - 2023 period [1]. Unlike acute illnesses, the health consequences of obesity typically develop gradually. Obesity accelerates biological aging by promoting chronic low-grade inflammation, oxidative stress, and mitochondrial dysfunction, all of which contribute to the earlier onset of age-related diseases [2]. It increases the risk of numerous chronic conditions, including type 2 diabetes mellitus, cardiovascular disease, metabolic syndrome, hypertension, and certain types of cancers [3, 4]. In this project I want to test the relationship between lifestyle factors and obesity. I expect for example that regular physical activity and low calories intake are associated with lower obesity levels. Hypothesis (H1): Healthier lifestyle habits are associated with lower obesity rates. Null hypothesis (H0): There is no correlation between lifestyle and obesity. The findings may contribute to a better understanding of the problem and alter public health strategies.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
@@ -234,15 +234,563 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a library</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some sample data</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a plot</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>x, data<span class="sc">$</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggpubr' was built under R version 4.6.1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ lubridate 1.9.5     ✔ tibble    3.3.1
+✔ purrr     1.2.2     ✔ tidyr     1.3.2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()            masks stats::filter()
+✖ dplyr::ident()             masks dbplyr::ident()
+✖ dplyr::lag()               masks stats::lag()
+✖ dplyr::sql()               masks dbplyr::sql()
+✖ dplyr::sql_escape_ident()  masks dbplyr::sql_escape_ident()
+✖ dplyr::sql_escape_string() masks dbplyr::sql_escape_string()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>corrplot 0.95 loaded</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'psych'
+
+The following objects are masked from 'package:ggplot2':
+
+    %+%, alpha</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData
+
+Attaching package: 'car'
+
+The following object is masked from 'package:psych':
+
+    logit
+
+The following object is masked from 'package:dplyr':
+
+    recode
+
+The following object is masked from 'package:purrr':
+
+    some</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'rstatix' was built under R version 4.6.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'rstatix'
+
+The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcompView)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some sample data</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Start</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/kulkins/Desktop/R_s/AnnaUsoltseva.github.io/projects"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/Users/kulkins/Desktop/R_s/AnnaUsoltseva.github.io/projects"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "final-report.qmd"       "final-report.rmarkdown" "Obesity prediction.csv"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Obesity <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Obesity prediction.csv"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,111
+Columns: 17
+$ Gender         &lt;chr&gt; "Female", "Female", "Male", "Male", "Male", "Male", "Fe…
+$ Age            &lt;dbl&gt; 21, 21, 23, 27, 22, 29, 23, 22, 24, 22, 26, 21, 22, 41,…
+$ Height         &lt;dbl&gt; 1.62, 1.52, 1.80, 1.80, 1.78, 1.62, 1.50, 1.64, 1.78, 1…
+$ Weight         &lt;dbl&gt; 64.0, 56.0, 77.0, 87.0, 89.8, 53.0, 55.0, 53.0, 64.0, 6…
+$ family_history &lt;chr&gt; "yes", "yes", "yes", "no", "no", "no", "yes", "no", "ye…
+$ FAVC           &lt;chr&gt; "no", "no", "no", "no", "no", "yes", "yes", "no", "yes"…
+$ FCVC           &lt;dbl&gt; 2, 3, 2, 3, 2, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 3, 2, 2, 3…
+$ NCP            &lt;dbl&gt; 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 1, 1, 4…
+$ CAEC           &lt;chr&gt; "Sometimes", "Sometimes", "Sometimes", "Sometimes", "So…
+$ SMOKE          &lt;chr&gt; "no", "yes", "no", "no", "no", "no", "no", "no", "no", …
+$ CH2O           &lt;dbl&gt; 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 3, 2, 1, 2, 1, 2, 1…
+$ SCC            &lt;chr&gt; "no", "yes", "no", "no", "no", "no", "no", "no", "no", …
+$ FAF            &lt;dbl&gt; 0, 3, 2, 2, 0, 0, 1, 3, 1, 1, 2, 2, 2, 2, 1, 2, 1, 0, 0…
+$ TUE            &lt;dbl&gt; 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 2, 1, 0, 1, 1, 1, 0, 0, 0…
+$ CALC           &lt;chr&gt; "no", "Sometimes", "Frequently", "Frequently", "Sometim…
+$ MTRANS         &lt;chr&gt; "Public_Transportation", "Public_Transportation", "Publ…
+$ Obesity        &lt;chr&gt; "Normal_Weight", "Normal_Weight", "Normal_Weight", "Ove…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Gender Age Height Weight family_history FAVC FCVC NCP      CAEC SMOKE CH2O
+1 Female  21   1.62   64.0            yes   no    2   3 Sometimes    no    2
+2 Female  21   1.52   56.0            yes   no    3   3 Sometimes   yes    3
+3   Male  23   1.80   77.0            yes   no    2   3 Sometimes    no    2
+4   Male  27   1.80   87.0             no   no    3   3 Sometimes    no    2
+5   Male  22   1.78   89.8             no   no    2   1 Sometimes    no    2
+6   Male  29   1.62   53.0             no  yes    2   3 Sometimes    no    2
+  SCC FAF TUE       CALC                MTRANS             Obesity
+1  no   0   1         no Public_Transportation       Normal_Weight
+2 yes   3   0  Sometimes Public_Transportation       Normal_Weight
+3  no   2   1 Frequently Public_Transportation       Normal_Weight
+4  no   2   0 Frequently               Walking  Overweight_Level_I
+5  no   0   0  Sometimes Public_Transportation Overweight_Level_II
+6  no   0   0  Sometimes            Automobile       Normal_Weight</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2111   17</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Gender"         "Age"            "Height"         "Weight"        
+ [5] "family_history" "FAVC"           "FCVC"           "NCP"           
+ [9] "CAEC"           "SMOKE"          "CH2O"           "SCC"           
+[13] "FAF"            "TUE"            "CALC"           "MTRANS"        
+[17] "Obesity"       </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Gender          Age            Height          Weight      
+ Length   :2111   Min.   :14.00   Min.   :1.450   Min.   : 39.00  
+ N.unique :   2   1st Qu.:19.95   1st Qu.:1.630   1st Qu.: 65.47  
+ N.blank  :   0   Median :22.78   Median :1.700   Median : 83.00  
+ Min.nchar:   4   Mean   :24.31   Mean   :1.702   Mean   : 86.59  
+ Max.nchar:   6   3rd Qu.:26.00   3rd Qu.:1.768   3rd Qu.:107.43  
+                  Max.   :61.00   Max.   :1.980   Max.   :173.00  
+   family_history        FAVC           FCVC            NCP       
+ Length   :2111   Length   :2111   Min.   :1.000   Min.   :1.000  
+ N.unique :   2   N.unique :   2   1st Qu.:2.000   1st Qu.:2.659  
+ N.blank  :   0   N.blank  :   0   Median :2.386   Median :3.000  
+ Min.nchar:   2   Min.nchar:   2   Mean   :2.419   Mean   :2.686  
+ Max.nchar:   3   Max.nchar:   3   3rd Qu.:3.000   3rd Qu.:3.000  
+                                   Max.   :3.000   Max.   :4.000  
+        CAEC            SMOKE           CH2O              SCC      
+ Length   :2111   Length   :2111   Min.   :1.000   Length   :2111  
+ N.unique :   4   N.unique :   2   1st Qu.:1.585   N.unique :   2  
+ N.blank  :   0   N.blank  :   0   Median :2.000   N.blank  :   0  
+ Min.nchar:   2   Min.nchar:   2   Mean   :2.008   Min.nchar:   2  
+ Max.nchar:  10   Max.nchar:   3   3rd Qu.:2.477   Max.nchar:   3  
+                                   Max.   :3.000                   
+      FAF              TUE                CALC            MTRANS    
+ Min.   :0.0000   Min.   :0.0000   Length   :2111   Length   :2111  
+ 1st Qu.:0.1245   1st Qu.:0.0000   N.unique :   4   N.unique :   5  
+ Median :1.0000   Median :0.6253   N.blank  :   0   N.blank  :   0  
+ Mean   :1.0103   Mean   :0.6579   Min.nchar:   2   Min.nchar:   4  
+ 3rd Qu.:1.6667   3rd Qu.:1.0000   Max.nchar:  10   Max.nchar:  21  
+ Max.   :3.0000   Max.   :2.0000                                    
+      Obesity    
+ Length   :2111  
+ N.unique :   7  
+ N.blank  :   0  
+ Min.nchar:  13  
+ Max.nchar:  19  
+                 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(Obesity))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Gender            Age         Height         Weight family_history 
+             0              0              0              0              0 
+          FAVC           FCVC            NCP           CAEC          SMOKE 
+             0              0              0              0              0 
+          CH2O            SCC            FAF            TUE           CALC 
+             0              0              0              0              0 
+        MTRANS        Obesity 
+             0              0 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   2111 obs. of  17 variables:
+ $ Gender        : chr  "Female" "Female" "Male" "Male" ...
+ $ Age           : num  21 21 23 27 22 29 23 22 24 22 ...
+ $ Height        : num  1.62 1.52 1.8 1.8 1.78 1.62 1.5 1.64 1.78 1.72 ...
+ $ Weight        : num  64 56 77 87 89.8 53 55 53 64 68 ...
+ $ family_history: chr  "yes" "yes" "yes" "no" ...
+ $ FAVC          : chr  "no" "no" "no" "no" ...
+ $ FCVC          : num  2 3 2 3 2 2 3 2 3 2 ...
+ $ NCP           : num  3 3 3 3 1 3 3 3 3 3 ...
+ $ CAEC          : chr  "Sometimes" "Sometimes" "Sometimes" "Sometimes" ...
+ $ SMOKE         : chr  "no" "yes" "no" "no" ...
+ $ CH2O          : num  2 3 2 2 2 2 2 2 2 2 ...
+ $ SCC           : chr  "no" "yes" "no" "no" ...
+ $ FAF           : num  0 3 2 2 0 0 1 3 1 1 ...
+ $ TUE           : num  1 0 1 0 0 0 0 0 1 1 ...
+ $ CALC          : chr  "no" "Sometimes" "Frequently" "Frequently" ...
+ $ MTRANS        : chr  "Public_Transportation" "Public_Transportation" "Public_Transportation" "Walking" ...
+ $ Obesity       : chr  "Normal_Weight" "Normal_Weight" "Normal_Weight" "Overweight_Level_I" ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Obesity<span class="sc">$</span>Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Insufficient_Weight       Normal_Weight      Obesity_Type_I     Obesity_Type_II 
+                272                 287                 351                 297 
+   Obesity_Type_III  Overweight_Level_I Overweight_Level_II 
+                324                 290                 290 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Changing to the right order</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>Obesity<span class="sc">$</span>Obesity <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  Obesity<span class="sc">$</span>Obesity,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Insufficient_Weight"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Normal_Weight"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Overweight_Level_I"</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Overweight_Level_II"</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Obesity_Type_I"</span>,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Obesity_Type_II"</span>,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Obesity_Type_III"</span>))</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(Obesity<span class="sc">$</span>Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Insufficient_Weight" "Normal_Weight"       "Overweight_Level_I" 
+[4] "Overweight_Level_II" "Obesity_Type_I"      "Obesity_Type_II"    
+[7] "Obesity_Type_III"   </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Obesity<span class="sc">$</span>Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Insufficient_Weight       Normal_Weight  Overweight_Level_I Overweight_Level_II 
+                272                 287                 290                 290 
+     Obesity_Type_I     Obesity_Type_II    Obesity_Type_III 
+                351                 297                 324 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Obesity<span class="sc">$</span>FAF)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+       0  9.6e-05 0.000272 0.000454 0.001015 0.001086 0.001272 0.001297 
+     411        1        1        1        1        1        1        1 
+ 0.00203  0.00342 0.003938 0.005405 0.005939 0.006265  0.00705 0.008013 
+       1        1        1        1        1        1        2        1 
+0.008127 0.008368 0.010183 0.011161 0.011477 0.011519  0.01437  0.01586 
+       1        1        1        1        1        1        1        2 
+ 0.01682 0.017804 0.019404  0.02006  0.02112 0.022598 0.022958 0.023574 
+       1        1        1        1        1        1        1        1 
+0.025787 0.026033 0.026142 0.027101 0.027433 0.028202 0.029603 0.029728 
+       1        2        1        1        1        1        1        2 
+0.030541 0.033328 0.033745  0.03465 0.035091 0.035928 0.038809 0.039207 
+       1        1        1        1        1        1        1        1 
+0.043101 0.043412 0.043689 0.045246  0.04525 0.045651 0.046836 0.047738 
+       1        1        1        1        1        1        1        1 
+ 0.05093 0.051097 0.054238 0.057758 0.061366  0.06275 0.062932 0.063383 
+       1        1        1        1        1        1        1        1 
+0.065264  0.06582 0.067329 0.067491 0.067985 0.069238 0.069802  0.07089 
+       1        1        1        1        1        1        1        1 
+ 0.07115 0.072117 0.073065 0.075776 0.083675 0.085119 0.085388 0.090147 
+       1        1        1        1        1        1        1        1 
+0.090917 0.092344 0.093418 0.094851 0.094893 0.095389 0.095517 0.097114 
+       1        1        1        1        1        1        1        1 
+0.098043  0.10032 0.101236  0.10297 0.104451 0.104707 0.107078 0.107981 
+       1        1        1        1        1        1        1        1 
+0.108386 0.108948 0.109327 0.110174 0.110887 0.112122 0.112383  0.11243 
+       1        1        1        2        1        1        1        1 
+0.112454 0.114698 0.115369 0.115974 0.118271  0.11964 0.119643 0.120165 
+       1        1        1        1        1        1        1        1 
+0.121585 0.127425 0.128342 0.128548 0.129163 0.129178 0.129902 0.130417 
+       1        1        1        1        1        1        1        1 
+0.131371 0.132629 0.133398 0.139159 0.139808 0.143955 0.144627  0.14495 
+       1        1        1        1        1        2        1        1 
+0.145687 0.146919 0.148628  0.15136 0.152713 0.155579 0.159255 0.162083 
+       1        1        1        1        1        1        1        1 
+0.162279 0.165269 0.165422 0.167086 0.167125 0.167943 0.170452  0.17048 
+       1        1        1        1        1        1        1        1 
+0.174475 0.174692   0.1768 0.178023 0.178856 0.178976 0.180158 0.180276 
+       1        1        1        1        1        1        1        1 
+0.181324 0.181753 0.182249 0.184917 0.189831 0.189957 0.190061 0.192559 
+       1        1        1        1        1        1        1        1 
+0.194056 0.194745 0.196152 0.197993 0.201136 0.202029 0.204108 0.206025 
+       1        1        1        1        1        1        1        1 
+0.206954 0.209586 0.210181 0.210351 0.215187 0.216908 0.217455 0.218356 
+       1        1        1        2        1        1        1        1 
+0.220825 0.224482 0.227802 0.227985 0.228307 0.228753 0.232742 0.233056 
+       1        1        1        1        1        1        1        1 
+0.233987 0.234303  0.23553 0.236168 0.244749 0.245003 0.245354  0.24629 
+       1        1        1        1        1        1        2        1 
+0.246831 0.248034 0.249264  0.25289 0.256113 0.256323 0.259424 0.259427 
+       1        1        1        1        1        1        1        1 
+0.260079 0.261274 0.262171 0.264831 0.268801 0.271174 0.274838 0.279375 
+       1        1        1        1        1        1        1        1 
+0.281734 0.281876 0.282063 0.285889 0.288032 0.291309 0.292093 0.294763 
+       1        1        1        1        2        1        1        1 
+0.295178 0.300964 0.303722 0.305422 0.312254 0.312923  0.31381 0.317363 
+       1        1        1        1        1        1        1        1 
+0.319156 0.320209 0.322013 0.324676 0.324913 0.325313 0.325534 0.327418 
+       1        1        1        1        1        1        1        1 
+ 0.32896 0.334264 0.334579 0.336795 0.336814 0.340915 0.344013 0.345684 
+       1        1        1        1        1        1        1        2 
+0.348839 0.349371 0.350717 0.354541 0.356288 0.358709 0.359134  0.36009 
+       1        1        1        1        1        1        1        1 
+0.360908 0.362441 0.368026 0.371452 0.371508 0.373186 0.378683 0.380633 
+       1        1        1        1        1        1        1        1 
+0.382189 0.387074 0.388269  0.38926 0.389717 0.390877 0.390937 0.393452 
+       1        1        1        1        1        1        1        1 
+0.402614 0.408023 0.413643 0.417119 0.417724 0.418875 0.425621  0.42777 
+       1        1        1        1        1        1        1        1 
+0.427905 0.428173 0.428259 0.432813 0.432973 0.444347 0.445238 0.451009 
+       1        1        1        1        1        1        1        1 
+0.451078 0.454944 0.455216 0.458237 0.458981 0.462951 0.463891 0.463949 
+       1        1        1        1        1        1        1        1 
+0.467562 0.477855 0.478134 0.478595 0.479592 0.480206 0.480614 0.481555 
+       1        1        1        1        1        1        1        1 
+0.482625 0.485322 0.486006 0.497373 0.501417 0.503105 0.503122 0.503279 
+       1        1        1        1        1        1        1        1 
+0.508847 0.512094 0.514225 0.520407 0.520408 0.520989 0.523847 0.525002 
+       1        1        1        2        1        1        1        1 
+0.527341 0.529259 0.530925 0.533309 0.539952 0.540397 0.544564 0.544784 
+       1        1        1        1        1        1        1        1 
+0.545919 0.545931 0.546402 0.547515 0.548991  0.55181 0.552511 0.553305 
+       1        1        1        1        1        1        1        1 
+0.554323 0.554646  0.55713 0.562118 0.565242  0.56931 0.571648 0.577063 
+       1        1        1        1        1        1        1        1 
+0.578074  0.58216 0.582686 0.584272 0.584793 0.588673 0.592607 0.597863 
+       1        1        1        1        1        1        1        1 
+0.598438 0.598655 0.600817 0.603638 0.604259   0.6081 0.611037 0.614466 
+       1        1        1        1        1        1        1        1 
+0.614959 0.615298 0.616503 0.618913 0.619533   0.6277 0.630944  0.63119 
+       1        1        1        1        1        1        1        1 
+0.631565 0.632164 0.632947 0.641954  0.64235 0.647632 0.647798 0.650235 
+       1        1        1        1        1        1        1        1 
+0.651412 0.652736 0.654316 0.656548 0.658894 0.662831 0.663896 0.665439 
+       1        1        1        1        1        1        1        1 
+0.668963 0.669278 0.674348 0.675262 0.675983 0.678943 0.679935 0.680464 
+       1        1        1        1        1        1        1        1 
+ 0.68183 0.684487 0.684739 0.684879 0.689371 0.690269 0.691369 0.692123 
+       1        1        1        1        1        1        1        1 
+0.693732 0.694281 0.699592 0.702538 0.702839 0.704236 0.706287 0.706777 
+       1        1        1        1        1        1        1        1 
+0.712726 0.729898 0.732186 0.732276 0.736032 0.739881 0.740633 0.742113 
+       1        1        1        1        1        1        1        1 
+ 0.74225 0.743005 0.743593 0.747528 0.750111 0.752926 0.753782 0.754599 
+       1        1        1        1        1        1        1        1 
+0.754646 0.756277 0.759422 0.763595 0.766007 0.767013 0.769709 0.769726 
+       1        1        1        1        1        1        1        1 
+0.770536 0.779686 0.780117 0.782416 0.783676 0.783963 0.784216 0.786828 
+       1        1        1        1        1        1        1        1 
+0.788585 0.788659 0.791929 0.792553 0.792929 0.793262 0.793489 0.794402 
+       1        1        1        1        1        1        1        1 
+ 0.79677 0.797209 0.800487 0.806422 0.807076  0.80873  0.80989 0.813917 
+       1        1        1        1        1        1        1        1 
+ 0.81517 0.815509 0.819269 0.819682 0.821977 0.822186 0.826609  0.82666 
+       1        1        1        1        1        1        1        1 
+0.827502 0.827506 0.833976 0.835271 0.838739 0.839481 0.843709 0.849811 
+       1        1        1        1        1        1        1        1 
+0.850715 0.851059 0.852344 0.852446 0.854337 0.854957   0.8554 0.855973 
+       1        1        1        1        1        1        1        1 
+0.858554 0.863158 0.866045 0.868721 0.870056 0.870127 0.874643  0.87599 
+       1        1        1        1        1        1        1        1 
+0.876101 0.877067 0.877295  0.87967 0.880584 0.882709 0.883171 0.883542 
+       1        1        1        1        1        1        1        1 
+0.884935 0.885633 0.886448 0.886602 0.886817 0.887923 0.889963 0.891205 
+       1        1        1        1        1        1        1        1 
+0.891444 0.893362 0.897562 0.897702 0.899864 0.901924 0.902095 0.902661 
+       1        1        1        1        1        1        1        1 
+0.902776 0.903369 0.906843 0.908981 0.912334 0.915699 0.916478 0.917014 
+       1        1        1        1        1        1        1        1 
+0.917563 0.919388 0.920476 0.921268 0.922014 0.922739 0.923428 0.925118 
+       1        1        1        1        1        1        1        1 
+0.925941 0.926201  0.92635 0.926592 0.932783 0.932792 0.932888 0.933595 
+       1        1        1        1        1        1        1        1 
+0.934286 0.935217  0.93732  0.94141 0.941424  0.94224 0.943058 0.943266 
+       1        2        1        1        1        1        1        1 
+0.944982 0.945093  0.94522 0.946461  0.94676 0.946763  0.94893  0.94984 
+       1        1        1        1        1        1        1        1 
+0.949976 0.952725   0.9529 0.954459 0.955317 0.958555 0.966617 0.966973 
+       1        1        1        1        1        1        1        1 
+0.967627 0.970661 0.973114 0.973465 0.973864 0.975187 0.975384 0.976425 
+       1        1        1        1        1        1        1        1 
+0.977929 0.977998  0.97812 0.978815 0.979306 0.979701 0.981686 0.982134 
+       1        1        1        1        1        1        1        1 
+ 0.98232 0.985287 0.985872 0.986414 0.987521 0.987591 0.989316 0.989335 
+       1        1        1        1        1        1        1        1 
+0.990642 0.992253 0.992371 0.992829  0.99295 0.993058 0.994422 0.994592 
+       1        1        1        1        1        1        1        1 
+0.995735 0.997202 0.997731 0.998039 0.998391        1 1.000227  1.00109 
+       1        1        1        1        1      234        1        1 
+ 1.00183 1.003294 1.006884 1.016042 1.016254 1.018158 1.020525 1.025438 
+       1        1        1        1        1        1        1        1 
+ 1.02569 1.026452  1.02975 1.030199 1.030526 1.030752 1.034031  1.04268 
+       1        1        1        1        1        1        1        1 
+1.045107 1.046463 1.046878  1.04729 1.048507 1.051889  1.05545 1.055854 
+       1        1        1        1        1        1        1        1 
+1.058378 1.060349 1.061743 1.062011 1.066101 1.066169 1.066241 1.067817 
+       1        1        1        1        1        1        1        2 
+1.070331 1.072318 1.072662 1.076248  1.07672 1.076729 1.076926 1.077469 
+       1        1        1        1        1        1        1        1 
+1.078074 1.078719 1.079524 1.079934 1.082236 1.083572 1.089061 1.089344 
+       1        1        1        1        1        1        1        1 
+1.089891 1.091474 1.093679 1.094035 1.094839 1.096556 1.096818 1.097905 
+       1        1        1        1        1        1        1        2 
+1.097983 1.098862 1.103088 1.103209 1.107543 1.110215 1.110868 1.112504 
+       1        1        1        1        1        1        1        1 
+1.113169 1.117311 1.121038 1.123931   1.1293 1.139107 1.141708 1.144076 
+       1        1        1        1        1        1        1        1 
+1.144683 1.144876 1.145752 1.153775 1.156024  1.15804 1.159598 1.162519 
+       1        1        1        1        1        1        1        1 
+1.166064 1.167856 1.168368 1.170537 1.170823  1.17116  1.17177 1.172641 
+       1        1        1        1        1        1        1        1 
+1.179592 1.181811 1.186013 1.190465  1.19102 1.193486 1.194519 1.194898 
+       1        1        1        1        1        1        1        1 
+1.196368 1.201403 1.206059 1.206121  1.20758 1.208142 1.210736 1.211048 
+       1        1        1        1        1        1        1        1 
+ 1.21718 1.217993 1.219827 1.224743 1.226019 1.228136 1.230219 1.230441 
+       1        1        1        1        1        2        1        1 
+1.231031 1.234483 1.235675 1.236114 1.243567 1.246223 1.247505 1.251665 
+       1        1        1        1        1        1        1        1 
+1.252472 1.256115 1.258504  1.25955 1.259613 1.264257 1.264616 1.266739 
+       2        1        1        1        1        1        1        1 
+1.266866 1.269169 1.271651 1.271667 1.276552 1.280191 1.280924 1.281165 
+       1        1        1        1        1        1        1        1 
+1.284798 1.285976  1.28775 1.289421 1.293396 1.293665 1.295697 1.295759 
+       1        1        1        1        1        1        1        1 
+1.296535 1.299469 1.302507 1.303976 1.304291 1.305633 1.306476 1.308852 
+       1        1        1        1        1        1        1        1 
+1.309304  1.31257 1.315045  1.31817 1.318743 1.320065 1.321624 1.322558 
+       1        1        1        1        1        1        1        1 
+ 1.32417 1.324805  1.32534 1.327193 1.327833 1.330519 1.331526 1.333435 
+       1        1        1        1        1        1        1        1 
+1.335857  1.34139 1.343875 1.350001 1.351996 1.352558 1.352663 1.352973 
+       1        1        1        1        1        1        1        1 
+1.356468 1.358185 1.360635 1.360994 1.361533  1.37467 1.376217 1.376229 
+       1        1        1        1        1        1        1        1 
+1.376534 1.384607 1.386151  1.39016 1.392026 1.392406  1.39302 1.399183 
+       1        1        1        1        1        1        1        2 
+1.403872 1.408177 1.412357 1.413239 1.414209 1.416076   1.4164 1.417035 
+       1        1        1        1        1        1        1        1 
+1.419473 1.420675  1.42237 1.425712 1.427037 1.427233 1.427413 1.429256 
+       1        1        1        1        1        1        1        1 
+1.433151 1.441791 1.442485  1.44287 1.444382 1.445148 1.452467 1.453042 
+       1        1        1        1        1        1        1        1 
+1.454129  1.45473 1.456933  1.46046 1.461005  1.46361 1.464204 1.464674 
+       1        1        1        1        1        1        1        1 
+ 1.46525 1.465909 1.465931  1.46782 1.467863 1.469928 1.472172 1.474937 
+       1        1        1        1        1        1        1        1 
+1.475772 1.480919 1.482411  1.48372  1.48524 1.485978 1.486289 1.487987 
+       1        1        1        1        1        1        1        1 
+ 1.48809 1.488843 1.492967 1.493018 1.501647 1.501754 1.502711 1.504003 
+       1        1        1        1        1        1        1        1 
+1.505775 1.508897 1.510398 1.513029 1.516147  1.52001 1.520818  1.52184 
+       1        1        1        1        1        1        1        1 
+1.522399 1.522429 1.524405 1.525165 1.525384 1.528968 1.536555 1.537639 
+       1        1        1        1        1        1        1        1 
+1.538922 1.541072 1.543386 1.543961 1.544632 1.546179 1.548953 1.549693 
+       1        2        1        1        1        1        1        1 
+1.553734 1.554817 1.556155 1.556709 1.557737 1.560261 1.562213 1.564618 
+       1        1        1        1        1        1        1        1 
+1.571865 1.577824 1.579431 1.580263 1.581242 1.582428 1.582675 1.583832 
+       1        1        1        1        1        1        1        1 
+1.584716 1.586525 1.587406 1.590255 1.592494 1.592795 1.593183 1.596576 
+       1        1        1        1        1        1        1        2 
+1.600431 1.600536  1.60195 1.605983 1.606109 1.607953 1.609801 1.609938 
+       1        1        1        1        1        1        1        1 
+1.612248 1.612741 1.616882 1.618512 1.621733 1.622055 1.624981 1.628637 
+       1        1        1        1        1        1        1        1 
+1.629432 1.631912 1.634134  1.63581 1.637368  1.63812 1.645532 1.645654 
+       1        1        1        1        1        1        1        1 
+1.648883 1.649299 1.655488 1.655993 1.658698 1.661556 1.664722  1.66639 
+       1        1        1        1        1        2        1        1 
+1.666965 1.668961  1.67036 1.672639 1.676269 1.679935 1.680844 1.682271 
+       1        1        1        1        1        1        1        1 
+ 1.68249  1.68291 1.683497 1.683957 1.684582 1.685369 1.686229 1.689525 
+       1        1        1        1        1        1        1        1 
+1.696294 1.699056 1.699181 1.699592 1.700889  1.70464 1.708971  1.71807 
+       1        1        1        1        1        1        1        1 
+ 1.71836 1.718543 1.722053 1.723934 1.725931 1.727114 1.728332 1.729987 
+       1        1        1        1        1        1        1        1 
+ 1.73209  1.73234 1.734424 1.736538 1.738267 1.742453 1.746583 1.747347 
+       1        1        1        1        1        1        1        1 
+1.751656 1.757724 1.763277 1.771754 1.773304 1.779646 1.781589 1.783138 
+       1        1        1        1        1        1        1        1 
+1.783858 1.796779 1.804157  1.80674 1.809745 1.813318 1.814869 1.815768 
+       1        1        1        1        1        1        1        1 
+1.818052  1.82434 1.838881 1.846666 1.847802 1.851404 1.853425 1.856119 
+       1        1        1        1        1        1        1        1 
+1.857351 1.859667 1.860765 1.862235 1.863258 1.866023 1.866839 1.874662 
+       1        1        1        1        1        1        1        1 
+1.876051 1.877369 1.879818 1.881761  1.88452 1.887012 1.889937 1.890907 
+       1        1        1        1        1        1        1        1 
+1.898889 1.903182 1.903338 1.910432 1.910577  1.91108 1.911096 1.912981 
+       1        1        1        1        1        1        1        1 
+1.916751 1.917014 1.917383 1.922234  1.92628 1.926381 1.926592 1.928275 
+       1        1        1        1        1        1        1        1 
+1.930033 1.931173 1.931829 1.932386 1.940182 1.943743 1.944728 1.946907 
+       1        1        1        1        1        1        1        1 
+ 1.94907 1.949667  1.94984 1.950374 1.951027 1.952427 1.955992 1.956278 
+       1        1        1        1        1        1        1        1 
+1.958694 1.963379  1.96582 1.967234 1.967973  1.97073 1.974656 1.976341 
+       1        1        1        1        1        1        1        1 
+1.976427 1.976582 1.977918 1.978631 1.979355 1.980401 1.980738 1.981154 
+       1        1        1        2        1        1        1        1 
+1.982379 1.983265  1.98448 1.985536 1.986646 1.987296 1.989171 1.989316 
+       1        1        1        1        1        1        1        1 
+1.990317 1.991565 1.992719 1.993666  1.99507 1.995582 1.996487 1.997529 
+       1        1        1        1        1        1        1        1 
+1.998047 1.999631  1.99975 1.999773 1.999836 1.999886 1.999897        2 
+       1        1        1        1        1        1        1      183 
+2.000088 2.000561 2.000934  2.00123 2.002997 2.005286 2.008256 2.009397 
+       1        1        1        1        1        1        1        1 
+2.011519 2.011646 2.013377 2.022315 2.026668 2.038653 2.040816 2.044165 
+       1        1        1        1        1        1        1        1 
+ 2.05252 2.052896 2.060415 2.063943 2.075293 2.077653 2.079709  2.08515 
+       1        1        1        1        1        1        1        1 
+2.091862 2.094542  2.11137 2.113151 2.113992 2.119682 2.146778 2.148738 
+       1        1        1        1        1        1        1        1 
+ 2.16079 2.164472 2.165429 2.172546 2.177243  2.20208 2.206055 2.206738 
+       1        1        1        1        1        1        1        1 
+2.207881  2.21722  2.21939 2.230109 2.230547 2.232851 2.236586   2.2405 
+       1        1        1        1        1        1        1        1 
+2.240714 2.242754 2.269058 2.270555 2.274248 2.287423 2.300282 2.306844 
+       1        1        1        1        1        1        1        1 
+2.315983 2.318492 2.328147 2.349495 2.352091 2.358699 2.359339 2.392047 
+       1        1        1        1        1        1        1        1 
+2.405963 2.407906 2.429923 2.432443 2.433918 2.458237 2.460238 2.462269 
+       1        1        1        1        1        1        1        1 
+2.491642 2.492402 2.511157 2.536615 2.539762 2.545707 2.545931  2.57223 
+       1        1        1        1        1        1        1        1 
+2.595128 2.614909 2.627515  2.64102 2.641072 2.667739 2.669179 2.685087 
+       1        1        1        1        1        1        1        1 
+2.690756 2.697949 2.698874 2.707882  2.70825 2.710338 2.721646   2.7243 
+       1        1        1        1        1        1        1        1 
+2.762711 2.784471 2.787319 2.805801 2.819661 2.830911 2.834373 2.847761 
+       1        1        1        1        1        1        1        1 
+2.870127 2.876696 2.877473 2.878414  2.89118 2.891986 2.892922 2.931527 
+       1        1        1        1        1        1        2        1 
+2.936551 2.939733 2.971832 2.998981 2.999918        3 
+       1        1        1        1        1       75 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Obesity<span class="sc">$</span>FAF)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1245  1.0000  1.0103  1.6667  3.0000 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normality</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Obesity<span class="sc">$</span>FAF,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">10</span>,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">"black"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Histogram of Physical Activity (FAF)"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Physical Activity (FAF)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -250,7 +798,372 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Obesity, <span class="fu">aes</span>(<span class="at">sample =</span> FAF)) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Q-Q Plot of Physical Activity (FAF)"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Theoretical Quantiles"</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Sample Quantiles"</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-report_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(Obesity<span class="sc">$</span>FAF)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  Obesity$FAF
+W = 0.91518, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Homogeneity of Variance</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(FAF <span class="sc">~</span> Obesity, <span class="at">data =</span> Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+        Df F value    Pr(&gt;F)    
+group    6  13.082 1.394e-14 ***
+      2104                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kruskal-Wallis rank sum test</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(FAF <span class="sc">~</span> Obesity,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> Obesity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  FAF by Obesity
+Kruskal-Wallis chi-squared = 88.42, df = 6, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pairwise multiple comparisons (Games–Howell adjusted p-values)</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">games_howell_test</span>(</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> Obesity,</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  FAF <span class="sc">~</span> Obesity) <span class="sc">%&gt;%</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>, <span class="at">width =</span> <span class="cn">Inf</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 21 × 8
+   .y.   group1              group2              estimate conf.low conf.high
+ * &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;                  &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+ 1 FAF   Insufficient_Weight Normal_Weight       -0.00274   -0.238    0.232 
+ 2 FAF   Insufficient_Weight Overweight_Level_I  -0.193     -0.407    0.0200
+ 3 FAF   Insufficient_Weight Overweight_Level_II -0.292     -0.502   -0.0819
+ 4 FAF   Insufficient_Weight Obesity_Type_I      -0.263     -0.472   -0.0546
+ 5 FAF   Insufficient_Weight Obesity_Type_II     -0.278     -0.462   -0.0949
+ 6 FAF   Insufficient_Weight Obesity_Type_III    -0.585     -0.781   -0.390 
+ 7 FAF   Normal_Weight       Overweight_Level_I  -0.191     -0.422    0.0405
+ 8 FAF   Normal_Weight       Overweight_Level_II -0.289     -0.517   -0.0611
+ 9 FAF   Normal_Weight       Obesity_Type_I      -0.261     -0.488   -0.0338
+10 FAF   Normal_Weight       Obesity_Type_II     -0.276     -0.479   -0.0717
+11 FAF   Normal_Weight       Obesity_Type_III    -0.583     -0.797   -0.368 
+12 FAF   Overweight_Level_I  Overweight_Level_II -0.0987    -0.305    0.107 
+13 FAF   Overweight_Level_I  Obesity_Type_I      -0.0700    -0.275    0.134 
+14 FAF   Overweight_Level_I  Obesity_Type_II     -0.0849    -0.263    0.0936
+15 FAF   Overweight_Level_I  Obesity_Type_III    -0.392     -0.583   -0.201 
+16 FAF   Overweight_Level_II Obesity_Type_I       0.0287    -0.173    0.230 
+17 FAF   Overweight_Level_II Obesity_Type_II      0.0138    -0.161    0.188 
+18 FAF   Overweight_Level_II Obesity_Type_III    -0.293     -0.480   -0.106 
+19 FAF   Obesity_Type_I      Obesity_Type_II     -0.0149    -0.188    0.158 
+20 FAF   Obesity_Type_I      Obesity_Type_III    -0.322     -0.508   -0.136 
+21 FAF   Obesity_Type_II     Obesity_Type_III    -0.307     -0.463   -0.151 
+       p.adj p.adj.signif
+ *     &lt;dbl&gt; &lt;chr&gt;       
+ 1 1.000e+ 0 ns          
+ 2 1.05 e- 1 ns          
+ 3 8.84 e- 4 ***         
+ 4 3.89 e- 3 **          
+ 5 1.78 e- 4 ***         
+ 6 3.40 e-10 ****        
+ 7 1.84 e- 1 ns          
+ 8 3.64 e- 3 **          
+ 9 1.27 e- 2 *           
+10 1.41 e- 3 **          
+11 2.05 e-10 ****        
+12 7.92 e- 1 ns          
+13 9.51 e- 1 ns          
+14 7.97 e- 1 ns          
+15 4.69 e- 8 ****        
+16 1.000e+ 0 ns          
+17 1.000e+ 0 ns          
+18 8.98 e- 5 ****        
+19 1.000e+ 0 ns          
+20 7.89 e- 6 ****        
+21 2.14 e- 7 ****        </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>gh_results <span class="ot">&lt;-</span> <span class="fu">games_howell_test</span>(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> Obesity,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  FAF <span class="sc">~</span> Obesity)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(gh_results)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a plot</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Create the summary table</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> Obesity <span class="sc">%&gt;%</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Obesity) <span class="sc">%&gt;%</span></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(FAF),</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(FAF),</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">SE =</span> SD <span class="sc">/</span> <span class="fu">sqrt</span>(n),</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">CI =</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> SE,</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>summary_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 6
+  Obesity              Mean    SD     n     SE     CI
+  &lt;fct&gt;               &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Insufficient_Weight 1.25  0.857   272 0.0519 0.102 
+2 Normal_Weight       1.25  1.02    287 0.0600 0.118 
+3 Overweight_Level_I  1.06  0.852   290 0.0500 0.0984
+4 Overweight_Level_II 0.958 0.825   290 0.0484 0.0953
+5 Obesity_Type_I      0.987 0.895   351 0.0478 0.0939
+6 Obesity_Type_II     0.972 0.581   297 0.0337 0.0664
+7 Obesity_Type_III    0.665 0.733   324 0.0407 0.0801</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the means with 95% confidence intervals</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summary_df, <span class="fu">aes</span>(<span class="at">x =</span> Obesity, <span class="at">y =</span> Mean)) <span class="sc">+</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> Mean <span class="sc">-</span> CI,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> Mean <span class="sc">+</span> CI),</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.2</span>,</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mean Physical Activity Across Obesity Levels"</span>,</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Level"</span>,</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean Physical Activity (FAF)"</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">angle =</span> <span class="dv">45</span>,</span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-report_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gender</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>Obesity <span class="sc">%&gt;%</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Obesity, Gender)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Obesity Gender   n
+1  Insufficient_Weight Female 173
+2  Insufficient_Weight   Male  99
+3        Normal_Weight Female 141
+4        Normal_Weight   Male 146
+5   Overweight_Level_I Female 145
+6   Overweight_Level_I   Male 145
+7  Overweight_Level_II Female 103
+8  Overweight_Level_II   Male 187
+9       Obesity_Type_I Female 156
+10      Obesity_Type_I   Male 195
+11     Obesity_Type_II Female   2
+12     Obesity_Type_II   Male 295
+13    Obesity_Type_III Female 323
+14    Obesity_Type_III   Male   1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put obesity categories in the correct order</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>Obesity <span class="ot">&lt;-</span> Obesity <span class="sc">%&gt;%</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Obesity =</span> <span class="fu">factor</span>(</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>      Obesity,</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Insufficient_Weight"</span>,</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Normal_Weight"</span>,</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Overweight_Level_I"</span>,</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Overweight_Level_II"</span>,</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Obesity_Type_I"</span>,</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Obesity_Type_II"</span>,</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Obesity_Type_III"</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a NEW summary object</span></span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>summary_gender_plot <span class="ot">&lt;-</span> Obesity <span class="sc">%&gt;%</span></span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Obesity, Gender) <span class="sc">%&gt;%</span></span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(FAF, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(FAF, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(FAF)),</span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">SE =</span> SD <span class="sc">/</span> <span class="fu">sqrt</span>(n),</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">CI =</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> SE,</span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">droplevels</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `summarise()`.
+ℹ In argument: `CI = qt(0.975, df = n - 1) * SE`.
+ℹ In group 14: `Obesity = Obesity_Type_III`, `Gender = "Male"`.
+Caused by warning in `qt()`:
+! NaNs produced</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that only 12 rows remain</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_gender_plot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 7
+   Obesity             Gender  Mean    SD     n     SE     CI
+   &lt;fct&gt;               &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Insufficient_Weight Female 1.11  0.866   173 0.0658 0.130 
+ 2 Insufficient_Weight Male   1.49  0.788    99 0.0792 0.157 
+ 3 Normal_Weight       Female 1.10  0.981   141 0.0826 0.163 
+ 4 Normal_Weight       Male   1.39  1.03    146 0.0855 0.169 
+ 5 Overweight_Level_I  Female 0.883 0.877   145 0.0728 0.144 
+ 6 Overweight_Level_I  Male   1.23  0.791   145 0.0657 0.130 
+ 7 Overweight_Level_II Female 0.805 0.751   103 0.0740 0.147 
+ 8 Overweight_Level_II Male   1.04  0.853   187 0.0624 0.123 
+ 9 Obesity_Type_I      Female 0.703 0.780   156 0.0625 0.123 
+10 Obesity_Type_I      Male   1.21  0.917   195 0.0657 0.130 
+11 Obesity_Type_II     Male   0.972 0.577   295 0.0336 0.0662
+12 Obesity_Type_III    Female 0.661 0.730   323 0.0406 0.0799</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and save the NEW plot</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>gender_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  summary_gender_plot,</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> Obesity,</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> Mean,</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> Gender</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, Mean <span class="sc">-</span> CI),</span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> Mean <span class="sc">+</span> CI</span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.2</span>,</span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span></span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(</span>
+<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">vars</span>(Gender),</span>
+<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">scales =</span> <span class="st">"free_x"</span>,</span>
+<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">space =</span> <span class="st">"free_x"</span></span>
+<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb61-28"><a href="#cb61-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb61-29"><a href="#cb61-29" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Female"</span> <span class="ot">=</span> <span class="st">"hotpink"</span>,</span>
+<span id="cb61-30"><a href="#cb61-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Male"</span> <span class="ot">=</span> <span class="st">"steelblue"</span></span>
+<span id="cb61-31"><a href="#cb61-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb61-32"><a href="#cb61-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb61-33"><a href="#cb61-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-34"><a href="#cb61-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb61-35"><a href="#cb61-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">drop =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb61-36"><a href="#cb61-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb61-37"><a href="#cb61-37" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Insufficient_Weight"</span> <span class="ot">=</span> <span class="st">"Insufficient"</span>,</span>
+<span id="cb61-38"><a href="#cb61-38" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Normal_Weight"</span> <span class="ot">=</span> <span class="st">"Normal"</span>,</span>
+<span id="cb61-39"><a href="#cb61-39" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Overweight_Level_I"</span> <span class="ot">=</span> <span class="st">"Overweight I"</span>,</span>
+<span id="cb61-40"><a href="#cb61-40" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Overweight_Level_II"</span> <span class="ot">=</span> <span class="st">"Overweight II"</span>,</span>
+<span id="cb61-41"><a href="#cb61-41" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Obesity_Type_I"</span> <span class="ot">=</span> <span class="st">"Obesity I"</span>,</span>
+<span id="cb61-42"><a href="#cb61-42" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Obesity_Type_II"</span> <span class="ot">=</span> <span class="st">"Obesity II"</span>,</span>
+<span id="cb61-43"><a href="#cb61-43" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Obesity_Type_III"</span> <span class="ot">=</span> <span class="st">"Obesity III"</span></span>
+<span id="cb61-44"><a href="#cb61-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb61-45"><a href="#cb61-45" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb61-46"><a href="#cb61-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-47"><a href="#cb61-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb61-48"><a href="#cb61-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="at">by =</span> <span class="fl">0.5</span>),</span>
+<span id="cb61-49"><a href="#cb61-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.03</span>))</span>
+<span id="cb61-50"><a href="#cb61-50" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb61-51"><a href="#cb61-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-52"><a href="#cb61-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb61-53"><a href="#cb61-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-54"><a href="#cb61-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb61-55"><a href="#cb61-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mean Physical Activity Across Obesity Levels by Gender"</span>,</span>
+<span id="cb61-56"><a href="#cb61-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Level"</span>,</span>
+<span id="cb61-57"><a href="#cb61-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean Physical Activity (FAF)"</span></span>
+<span id="cb61-58"><a href="#cb61-58" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb61-59"><a href="#cb61-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-60"><a href="#cb61-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb61-61"><a href="#cb61-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-62"><a href="#cb61-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb61-63"><a href="#cb61-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb61-64"><a href="#cb61-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb61-65"><a href="#cb61-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb61-66"><a href="#cb61-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span></span>
+<span id="cb61-67"><a href="#cb61-67" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb61-68"><a href="#cb61-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(</span>
+<span id="cb61-69"><a href="#cb61-69" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb61-70"><a href="#cb61-70" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">11</span></span>
+<span id="cb61-71"><a href="#cb61-71" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb61-72"><a href="#cb61-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb61-73"><a href="#cb61-73" aria-hidden="true" tabindex="-1"></a>      <span class="at">angle =</span> <span class="dv">45</span>,</span>
+<span id="cb61-74"><a href="#cb61-74" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="dv">1</span></span>
+<span id="cb61-75"><a href="#cb61-75" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb61-76"><a href="#cb61-76" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb61-77"><a href="#cb61-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-78"><a href="#cb61-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Explicitly display the new plot</span></span>
+<span id="cb61-79"><a href="#cb61-79" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(gender_plot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-report_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Age</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Obesity<span class="sc">$</span>Age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  14.00   19.95   22.78   24.31   26.00   61.00 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Obesity, <span class="fu">aes</span>(<span class="at">x =</span> Obesity, <span class="at">y =</span> Age, <span class="at">fill =</span> Obesity)) <span class="sc">+</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Age Distribution Across Obesity Levels"</span>,</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Level"</span>,</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Age"</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-report_files/figure-html/unnamed-chunk-1-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Obesity, <span class="fu">aes</span>(Age, FAF)) <span class="sc">+</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.25</span>, <span class="at">height =</span> <span class="fl">0.05</span>, <span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Obesity, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-report_files/figure-html/unnamed-chunk-1-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>```</p>
 </section>
 <section id="example-table" class="level3">
 <h3 class="anchored" data-anchor-id="example-table">Example Table</h3>
@@ -286,7 +1199,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Summarize your findings and their implications.</p>
 </section>
 <section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<h2 class="anchored" data-anchor-id="references">References:</h2>
+<ol type="1">
+<li>National Center for Health Statistics (2024) Obesity and severe obesity prevalence in adults: United States, August 2021–August 2023 (Data Brief No.&nbsp;508). Hyattsville, MD: Centers for Disease Control and Prevention.</li>
+<li>Salvestrini V, Sell C, Lorenzini A (2019) Obesity may accelerate the aging process. Front Endocrinol (Lausanne) 10, 266.</li>
+<li>Jin X, Qiu T, Li L, Yu R, Chen X, Li C, et al.&nbsp;(2023) Pathophysiology of obesity and its associated diseases. Acta Pharm Sin B 13, 2403-2424.</li>
+<li>Scully T, Ettela A, LeRoith D, Gallagher EJ (2021) Obesity, type 2 diabetes, and cancer risk. Front Oncol 10, 615375. Dataset: Obesity Prediction https://www.kaggle.com/datasets/ruchikakumbhar/obesity-prediction</li>
+</ol>
 <p>Add any references to papers, data sources, or resources you used.</p>
 <hr>
 <p><strong>Last updated:</strong> June 2026</p>

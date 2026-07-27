@@ -1,14 +1,14 @@
 ---
-title: "Final Report: [Your Project Title]"
+title: "Final Report: [Obesity]"
 date: 2026-06-04
 author: "Anna Usoltseva"
 ---
 
-# Final Report: [Your Project Title]
+# Final Report: \[Obesity\]
 
 ## Introduction
 
-Replace this with an introduction to your research question or project. What are you investigating? Why does it matter?
+Obesity has emerged as a major public health problem. Centers for Disease Control and Prevention (CDC) reported the prevalence rate of obesity in the United States as 40.3% during 2021 - 2023 period \[1\]. Unlike acute illnesses, the health consequences of obesity typically develop gradually. Obesity accelerates biological aging by promoting chronic low-grade inflammation, oxidative stress, and mitochondrial dysfunction, all of which contribute to the earlier onset of age-related diseases \[2\]. It increases the risk of numerous chronic conditions, including type 2 diabetes mellitus, cardiovascular disease, metabolic syndrome, hypertension, and certain types of cancers \[3, 4\]. In this project I want to test the relationship between lifestyle factors and obesity. I expect for example that regular physical activity and low calories intake are associated with lower obesity levels. Hypothesis (H1): Healthier lifestyle habits are associated with lower obesity rates. Null hypothesis (H0): There is no correlation between lifestyle and obesity. The findings may contribute to a better understanding of the problem and alter public health strategies.
 
 ## Methods
 
@@ -28,8 +28,21 @@ Share your findings here. You can include:
 Here's a sample R code block:
 
 ```{r}
+
 # Load a library
 library(ggplot2)
+library(dbplyr)
+library(ggpubr)
+library(tidyverse)
+library(ggpubr)
+library(corrplot)
+library(psych)
+library(GGally)
+library(car)
+library(rstatix)
+library(dplyr)
+library(tidyr)
+library(multcompView)
 
 # Create some sample data
 data <- data.frame(
@@ -37,16 +50,276 @@ data <- data.frame(
   y = rnorm(10)
 )
 
+# Start
+getwd()
+setwd("/Users/kulkins/Desktop/R_s/AnnaUsoltseva.github.io/projects")
+list.files()
+Obesity <- read.csv("Obesity prediction.csv")
+glimpse(Obesity)
+head(Obesity)
+dim(Obesity)
+names(Obesity)
+summary(Obesity)
+colSums(is.na(Obesity))
+str(Obesity)
+table(Obesity$Obesity)
+
+# Changing to the right order
+Obesity$Obesity <- factor(
+  Obesity$Obesity,
+  levels = c(
+    "Insufficient_Weight",
+    "Normal_Weight",
+    "Overweight_Level_I",
+    "Overweight_Level_II",
+    "Obesity_Type_I",
+    "Obesity_Type_II",
+    "Obesity_Type_III"))
+
+
+levels(Obesity$Obesity)
+table(Obesity$Obesity)
+
+table(Obesity$FAF)
+summary(Obesity$FAF)
+
+# Normality
+hist(Obesity$FAF,
+     breaks = 10,
+  col = "lightblue",
+  border = "black",
+  main = "Histogram of Physical Activity (FAF)",
+  xlab = "Physical Activity (FAF)")
+
+
+ggplot(Obesity, aes(sample = FAF)) +
+  stat_qq() +
+  stat_qq_line(color = "red", linewidth = 1) +
+  labs(
+    title = "Q-Q Plot of Physical Activity (FAF)",
+    x = "Theoretical Quantiles",
+    y = "Sample Quantiles"
+  ) +
+  theme_classic()
+
+shapiro.test(Obesity$FAF)
+
+# Homogeneity of Variance
+leveneTest(FAF ~ Obesity, data = Obesity)
+
+# Kruskal-Wallis rank sum test
+kruskal.test(FAF ~ Obesity,
+             data = Obesity)
+
+# Pairwise multiple comparisons (Games–Howell adjusted p-values)
+games_howell_test(
+  data = Obesity,
+  FAF ~ Obesity) %>%
+print(n = Inf, width = Inf)
+
+gh_results <- games_howell_test(
+  data = Obesity,
+  FAF ~ Obesity)
+
+view(gh_results)
+
+
 # Make a plot
-plot(data$x, data$y)
+
+#Create the summary table
+summary_df <- Obesity %>%
+  group_by(Obesity) %>%
+  summarise(
+    Mean = mean(FAF),
+    SD = sd(FAF),
+    n = n(),
+    SE = SD / sqrt(n),
+    CI = qt(0.975, n - 1) * SE,
+    .groups = "drop")
+
+summary_df
+
+# Plot the means with 95% confidence intervals
+ggplot(summary_df, aes(x = Obesity, y = Mean)) +
+  geom_col(fill = "steelblue", width = 0.7) +
+  geom_errorbar(
+    aes(
+      ymin = Mean - CI,
+      ymax = Mean + CI),
+    width = 0.2,
+    linewidth = 0.8) +
+  labs(
+    title = "Mean Physical Activity Across Obesity Levels",
+    x = "Obesity Level",
+    y = "Mean Physical Activity (FAF)"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      face = "bold"),
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1))
+
+# Gender
+
+Obesity %>%
+  count(Obesity, Gender)
+
+
+# Put obesity categories in the correct order
+Obesity <- Obesity %>%
+  mutate(
+    Obesity = factor(
+      Obesity,
+      levels = c(
+        "Insufficient_Weight",
+        "Normal_Weight",
+        "Overweight_Level_I",
+        "Overweight_Level_II",
+        "Obesity_Type_I",
+        "Obesity_Type_II",
+        "Obesity_Type_III"
+      )
+    )
+  )
+
+# Create a NEW summary object
+summary_gender_plot <- Obesity %>%
+  group_by(Obesity, Gender) %>%
+  summarise(
+    Mean = mean(FAF, na.rm = TRUE),
+    SD = sd(FAF, na.rm = TRUE),
+    n = sum(!is.na(FAF)),
+    SE = SD / sqrt(n),
+    CI = qt(0.975, df = n - 1) * SE,
+    .groups = "drop"
+  ) %>%
+  filter(n >= 10) %>%
+  droplevels()
+
+# Check that only 12 rows remain
+print(summary_gender_plot)
+
+# Create and save the NEW plot
+gender_plot <- ggplot(
+  summary_gender_plot,
+  aes(
+    x = Obesity,
+    y = Mean,
+    fill = Gender
+  )
+) +
+  geom_col(width = 0.8) +
+
+  geom_errorbar(
+    aes(
+      ymin = pmax(0, Mean - CI),
+      ymax = Mean + CI
+    ),
+    width = 0.2,
+    linewidth = 0.8
+  ) +
+
+  facet_grid(
+    cols = vars(Gender),
+    scales = "free_x",
+    space = "free_x"
+  ) +
+
+  scale_fill_manual(
+    values = c(
+      "Female" = "hotpink",
+      "Male" = "steelblue"
+    )
+  ) +
+
+  scale_x_discrete(
+    drop = TRUE,
+    labels = c(
+      "Insufficient_Weight" = "Insufficient",
+      "Normal_Weight" = "Normal",
+      "Overweight_Level_I" = "Overweight I",
+      "Overweight_Level_II" = "Overweight II",
+      "Obesity_Type_I" = "Obesity I",
+      "Obesity_Type_II" = "Obesity II",
+      "Obesity_Type_III" = "Obesity III"
+    )
+  ) +
+
+  scale_y_continuous(
+    breaks = seq(0, 2, by = 0.5),
+    expand = expansion(mult = c(0, 0.03))
+  ) +
+
+  coord_cartesian(ylim = c(0, 2)) +
+
+  labs(
+    title = "Mean Physical Activity Across Obesity Levels by Gender",
+    x = "Obesity Level",
+    y = "Mean Physical Activity (FAF)"
+  ) +
+
+  theme_classic() +
+
+  theme(
+    legend.position = "none",
+    plot.title = element_text(
+      hjust = 0.5,
+      face = "bold"
+    ),
+    strip.text = element_text(
+      face = "bold",
+      size = 11
+    ),
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1
+    )
+  )
+
+# Explicitly display the new plot
+print(gender_plot)
+
+
+#Age
+
+summary(Obesity$Age)
+
+ggplot(Obesity, aes(x = Obesity, y = Age, fill = Obesity)) +
+  geom_boxplot(alpha = 0.8) +
+  labs(
+    title = "Age Distribution Across Obesity Levels",
+    x = "Obesity Level",
+    y = "Age"
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+ggplot(Obesity, aes(Age, FAF)) +
+  geom_jitter(width = 0.25, height = 0.05, alpha = 0.35) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  facet_wrap(~Obesity, ncol = 2) +
+  theme_classic()
+    
+```
+
+
+
+  
 ```
 
 ### Example Table
 
-| Method | Result | P-value |
-|--------|--------|---------|
-| Analysis 1 | Significant | 0.01 |
-| Analysis 2 | Not Significant | 0.15 |
+| Method     | Result          | P-value |
+|------------|-----------------|---------|
+| Analysis 1 | Significant     | 0.01    |
+| Analysis 2 | Not Significant | 0.15    |
 
 ## Discussion
 
@@ -56,10 +329,15 @@ What do your results mean? How do they relate to your research question? What li
 
 Summarize your findings and their implications.
 
-## References
+## References:
+
+1.  National Center for Health Statistics (2024) Obesity and severe obesity prevalence in adults: United States, August 2021–August 2023 (Data Brief No. 508). Hyattsville, MD: Centers for Disease Control and Prevention.
+2.  Salvestrini V, Sell C, Lorenzini A (2019) Obesity may accelerate the aging process. Front Endocrinol (Lausanne) 10, 266.
+3.  Jin X, Qiu T, Li L, Yu R, Chen X, Li C, et al. (2023) Pathophysiology of obesity and its associated diseases. Acta Pharm Sin B 13, 2403-2424.
+4.  Scully T, Ettela A, LeRoith D, Gallagher EJ (2021) Obesity, type 2 diabetes, and cancer risk. Front Oncol 10, 615375. Dataset: Obesity Prediction https://www.kaggle.com/datasets/ruchikakumbhar/obesity-prediction
 
 Add any references to papers, data sources, or resources you used.
 
----
+------------------------------------------------------------------------
 
 **Last updated:** June 2026
