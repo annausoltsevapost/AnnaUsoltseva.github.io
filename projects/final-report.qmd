@@ -20,6 +20,7 @@ The dataset included 2,111 participants and 17 variables related to demographics
 ## Results
 
 ```{r}
+#| warning: false
 
 # Library
 library(ggplot2)

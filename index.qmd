@@ -1,7 +1,7 @@
 ---
 title: "Anna Usoltseva"
 toc: false
-image: "Anna Usoltseva.jpg"
+image: "Anna Usoltseva1.jpg"
 about:
   template: trestles
   links:
