@@ -8,57 +8,41 @@ author: "Anna Usoltseva"
 
 ## Introduction
 
-Obesity has emerged as a major public health problem. Centers for Disease Control and Prevention (CDC) reported the prevalence rate of obesity in the United States as 40.3% during 2021 - 2023 period \[1\]. Unlike acute illnesses, the health consequences of obesity typically develop gradually. Obesity accelerates biological aging by promoting chronic low-grade inflammation, oxidative stress, and mitochondrial dysfunction, all of which contribute to the earlier onset of age-related diseases \[2\]. It increases the risk of numerous chronic conditions, including type 2 diabetes mellitus, cardiovascular disease, metabolic syndrome, hypertension, and certain types of cancers \[3, 4\]. In this project I want to test the relationship between lifestyle factors and obesity. I expect for example that regular physical activity and low calories intake are associated with lower obesity levels. Hypothesis (H1): Healthier lifestyle habits are associated with lower obesity rates. Null hypothesis (H0): There is no correlation between lifestyle and obesity. The findings may contribute to a better understanding of the problem and alter public health strategies.
+Obesity has emerged as a major public health problem. Centers for Disease Control and Prevention (CDC) reported the prevalence rate of obesity in the United States as 40.3% during 2021 - 2023 period \[1\]. Unlike acute illnesses, the health consequences of obesity typically develop gradually. Obesity accelerates biological aging by promoting chronic low-grade inflammation, oxidative stress, and mitochondrial dysfunction, all of which contribute to the earlier onset of age-related diseases \[2\]. It increases the risk of numerous chronic conditions, including type 2 diabetes mellitus, cardiovascular disease, metabolic syndrome, hypertension, and certain types of cancers \[3, 4\]. In this project I want to test the relationship between lifestyle factors and obesity. I expect for example that regular physical activity is associated with lower obesity levels. Hypothesis (H1): Healthier lifestyle habits are associated with lower obesity rates. Null hypothesis (H0): There is no correlation between lifestyle and obesity. The findings may contribute to a better understanding of the problem and alter public health strategies.
 
 ## Methods
 
-Describe how you conducted your analysis. What data did you use? What analyses did you perform?
+Obesity Prediction dataset was used in this project. It is available on Kaggle:
+https://www.kaggle.com/datasets/ruchikakumbhar/obesity-prediction 
+
+The dataset included 2,111 participants and 17 variables related to demographics, lifestyle, and obesity level.
 
 ## Results
 
-Share your findings here. You can include:
-
-- Text explanations
-- Tables
-- Figures and visualizations
-- Code examples (if relevant)
-
-### Example Code Block
-
-Here's a sample R code block:
-
 ```{r}
 
-# Load a library
+# Library
 library(ggplot2)
-library(dbplyr)
-library(ggpubr)
 library(tidyverse)
-library(ggpubr)
 library(corrplot)
-library(psych)
 library(GGally)
 library(car)
 library(rstatix)
-library(dplyr)
-library(tidyr)
 
+# Structure of the dataset, summary statistics, missing values, and the distribution of obesity levels. 
 
-# Start
 getwd()
 setwd("/Users/kulkins/Desktop/R_s/AnnaUsoltseva.github.io/projects")
 list.files()
 Obesity <- read.csv("Obesity prediction.csv")
 glimpse(Obesity)
-head(Obesity)
-dim(Obesity)
 names(Obesity)
 summary(Obesity)
 colSums(is.na(Obesity))
-str(Obesity)
 table(Obesity$Obesity)
 
-# Changing to the right order
+# The obesity levels were originally ordered alphabetically, so they were reordered into the ordinal sequence
+
 Obesity$Obesity <- factor(
   Obesity$Obesity,
   levels = c(
@@ -74,99 +58,79 @@ Obesity$Obesity <- factor(
 levels(Obesity$Obesity)
 table(Obesity$Obesity)
 
+# Visualization. How many human subjects was in each  group?
+
 ggplot(Obesity, aes(x = Obesity)) +
-  geom_bar(fill = "steelblue") +
-  geom_text(
-    stat = "count",
+  geom_bar(fill = "skyblue") +
+  geom_text(stat = "count",
     aes(label = after_stat(count)),
     vjust = -0.3,
-    size = 5
-  ) +
-  labs(
-    title = "Distribution of Obesity Levels",
+    size = 5) +
+  labs(title = "Distribution of Obesity Levels",
     x = "Obesity Level",
-    y = "Number of Participants"
-  ) +
+    y = "Number of Participants") +
   theme_classic() +
-  theme(
-    plot.title = element_text(hjust = 0.5, face = "bold"),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1))
 
 
-# FAMILY HISTORY
+# FAMILY HISTORY. 
+ 
 table(Obesity$family_history)
 summary(Obesity$family_history)
 
-table_history <- table(
-  Obesity$family_history,
-  Obesity$Obesity
-)
-
+table_history <- table(Obesity$family_history, Obesity$Obesity)
 table_history
 
-chisq.test(table_history)
+# Was there an association between obesity level and family history of obesity?
 
+chisq.test(table_history)
 ggplot(Obesity, aes(x = family_history, fill = family_history)) +
   geom_bar() +
   scale_fill_manual(values = c("no" = "skyblue",
-                               "yes" = "tomato")) +
-  geom_text(
-    stat = "count",
+                               "yes" = "indianred")) +
+  geom_text(stat = "count",
     aes(label = after_stat(count)),
     vjust = -0.3,
     color = "black",
-    size = 5
-  ) +
-  labs(
-    title = "Family History of Obesity",
+    size = 5) +
+  labs(title = "Family History of Obesity",
     x = "Family History",
-    y = "Number of Participants"
-  ) +
+    y = "Number of Participants") +
   theme_classic() +
-  theme(
-    legend.position = "none",
-    plot.title = element_text(hjust = 0.5, face = "bold")
-  )
+  theme(legend.position = "none",
+    plot.title = element_text(hjust = 0.5, face = "bold"))
 
-#in each level
+# How did family history of obesity vary across the different obesity levels?
 
 ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
   geom_bar(position = "dodge") +
-  geom_text(
-    stat = "count",
+  geom_text(stat = "count",
     aes(label = after_stat(count)),
     position = position_dodge(width = 0.9),
     vjust = -0.3,
-    size = 3.5
-  ) +
-  scale_fill_manual(
-    values = c(
+    size = 3.5) +
+  scale_fill_manual(values = c(
       "no" = "skyblue",
-      "yes" = "tomato"
-    )
-  ) +
-  labs(
-    title = "Obesity Level by Family History",
+      "yes" = "indianred")) +
+  labs(title = "Obesity Level by Family History",
     x = "Obesity Level",
     y = "Number of Participants",
-    fill = "Family History"
-  ) +
+    fill = "Family History") +
   theme_classic() +
-  theme(
-    plot.title = element_text(hjust = 0.5, face = "bold"),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1))
 
 
 #PHYSICAL ACTIVITY
-table(Obesity$FAF)
+
 summary(Obesity$FAF)
 
-# Normality
+# Was the physical activity data normally distributed?
+
 hist(Obesity$FAF,
      breaks = 10,
-  col = "lightblue",
+  col = "skyblue",
   border = "black",
   main = "Histogram of Physical Activity (FAF)",
   xlab = "Physical Activity (FAF)")
@@ -178,20 +142,22 @@ ggplot(Obesity, aes(sample = FAF)) +
   labs(
     title = "Q-Q Plot of Physical Activity (FAF)",
     x = "Theoretical Quantiles",
-    y = "Sample Quantiles"
-  ) +
+    y = "Sample Quantiles") +
   theme_classic()
 
 shapiro.test(Obesity$FAF)
 
-# Homogeneity of Variance
+# Was the assumption of homogeneity of variance met?
+
 leveneTest(FAF ~ Obesity, data = Obesity)
 
-# Kruskal-Wallis rank sum test
+# Was there a significant difference in physical activity across obesity levels?
+
 kruskal.test(FAF ~ Obesity,
              data = Obesity)
 
-# Pairwise multiple comparisons (Games–Howell adjusted p-values)
+# Were there significant pairwise differences in physical activity among obesity levels?
+
 games_howell_test(
   data = Obesity,
   FAF ~ Obesity) %>%
@@ -204,24 +170,22 @@ gh_results <- games_howell_test(
 view(gh_results)
 
 
-# Make a plot
-
-#Create the summary table
+# Summary Table of Physical Activity by Obesity Level
 summary_df <- Obesity %>%
   group_by(Obesity) %>%
-  summarise(
-    Mean = mean(FAF),
+  summarise(Mean = mean(FAF),
     SD = sd(FAF),
     n = n(),
     SE = SD / sqrt(n),
     CI = qt(0.975, n - 1) * SE,
     .groups = "drop")
-
 summary_df
 
-# Plot the means with 95% confidence intervals
+
+# How do the mean physical activity levels with 95% confidence intervals compare across obesity levels?
+
 ggplot(summary_df, aes(x = Obesity, y = Mean)) +
-  geom_col(fill = "steelblue", width = 0.7) +
+  geom_col(fill = "lightgreen", width = 0.7) +
   geom_errorbar(
     aes(
       ymin = Mean - CI,
@@ -242,64 +206,46 @@ ggplot(summary_df, aes(x = Obesity, y = Mean)) +
       angle = 45,
       hjust = 1))
 
-# Gender
-
+# Gender differences
 Obesity %>%
   count(Obesity, Gender)
 
-
-# Create a NEW summary object
+# Summary Table for Gender Differences
 summary_gender_plot <- Obesity %>%
   group_by(Obesity, Gender) %>%
-  summarise(
-    Mean = mean(FAF, na.rm = TRUE),
+  summarise(Mean = mean(FAF, na.rm = TRUE),
     SD = sd(FAF, na.rm = TRUE),
     n = sum(!is.na(FAF)),
     SE = SD / sqrt(n),
     CI = qt(0.975, df = n - 1) * SE,
-    .groups = "drop"
-  ) %>%
+    .groups = "drop") %>%
   filter(n >= 10) %>%
   droplevels()
 
-# Check that only 12 rows remain
 print(summary_gender_plot)
 
-# Create and save the NEW plot
-gender_plot <- ggplot(
-  summary_gender_plot,
-  aes(
-    x = Obesity,
+# How do physical activity levels and their 95% confidence intervals compare across obesity levels and between genders?
+
+gender_plot <- ggplot(summary_gender_plot,
+  aes(x = Obesity,
     y = Mean,
-    fill = Gender
-  )
-) +
-  geom_col(width = 0.8) +
-
-  geom_errorbar(
-    aes(
-      ymin = pmax(0, Mean - CI),
-      ymax = Mean + CI
-    ),
+    fill = Gender)) +
+  geom_col(width = 0.8) + geom_errorbar(
+    aes(ymin = pmax(0, Mean - CI),
+      ymax = Mean + CI),
     width = 0.2,
-    linewidth = 0.8
-  ) +
+    linewidth = 0.8) +
 
-  facet_grid(
-    cols = vars(Gender),
+  facet_grid(cols = vars(Gender),
     scales = "free_x",
-    space = "free_x"
-  ) +
+    space = "free_x") +
 
   scale_fill_manual(
     values = c(
       "Female" = "hotpink",
-      "Male" = "steelblue"
-    )
-  ) +
+      "Male" = "steelblue")) +
 
-  scale_x_discrete(
-    drop = TRUE,
+  scale_x_discrete(drop = TRUE,
     labels = c(
       "Insufficient_Weight" = "Insufficient",
       "Normal_Weight" = "Normal",
@@ -307,62 +253,60 @@ gender_plot <- ggplot(
       "Overweight_Level_II" = "Overweight II",
       "Obesity_Type_I" = "Obesity I",
       "Obesity_Type_II" = "Obesity II",
-      "Obesity_Type_III" = "Obesity III"
-    )
-  ) +
-
-  scale_y_continuous(
-    breaks = seq(0, 2, by = 0.5),
-    expand = expansion(mult = c(0, 0.03))
-  ) +
-
-  coord_cartesian(ylim = c(0, 2)) +
-
-  labs(
+      "Obesity_Type_III" = "Obesity III")) +
+scale_y_continuous(breaks = seq(0, 2, by = 0.5),
+    expand = expansion(mult = c(0, 0.03))) +
+coord_cartesian(ylim = c(0, 2)) + labs(
     title = "Mean Physical Activity Across Obesity Levels by Gender",
     x = "Obesity Level",
-    y = "Mean Physical Activity (FAF)"
-  ) +
+    y = "Mean Physical Activity (FAF)") +
 
   theme_classic() +
 
-  theme(
-    legend.position = "none",
+  theme(legend.position = "none",
     plot.title = element_text(
       hjust = 0.5,
-      face = "bold"
-    ),
+      face = "bold"),
     strip.text = element_text(
       face = "bold",
-      size = 11
-    ),
-    axis.text.x = element_text(
-      angle = 45,
-      hjust = 1
-    )
-  )
+      size = 11),
+    axis.text.x = element_text(angle = 45, hjust = 1))
 
-# Explicitly display the new plot
 print(gender_plot)
 
 
-#Age
+# How do physical activity levels vary across obesity levels and family history groups?
+
+heat_data <- Obesity %>%
+  group_by(Obesity, family_history) %>%
+  summarise(mean_FAF = mean(FAF),
+    n = n(),
+    .groups = "drop") %>%
+  filter(n >= 10)
+
+
+ggplot(heat_data,
+       aes(x = family_history,
+           y = Obesity,
+           fill = mean_FAF)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = paste0(
+      round(mean_FAF, 2),
+      "\n(n = ", n, ")")),
+    size = 4) +
+  scale_fill_gradient(
+    low = "lightcyan",
+    high = "steelblue") +
+  labs(title = "Average Physical Activity by Obesity Level and Family History",
+    x = "Family History",
+    y = "Obesity Level",
+    fill = "Mean FAF") +
+  theme_classic()
+
+
+# How does physical activity vary with age across obesity levels?
 
 summary(Obesity$Age)
-
-ggplot(Obesity, aes(x = Obesity, y = Age, fill = Obesity)) +
-  geom_boxplot(alpha = 0.8) +
-  labs(
-    title = "Age Distribution Across Obesity Levels",
-    x = "Obesity Level",
-    y = "Age"
-  ) +
-  theme_classic() +
-  theme(
-    legend.position = "none",
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-
 
 ggplot(Obesity, aes(Age, FAF)) +
   geom_jitter(width = 0.25, height = 0.05, alpha = 0.35) +
@@ -371,307 +315,103 @@ ggplot(Obesity, aes(Age, FAF)) +
   theme_classic()
     
 
+# HIGH-CALORIE FOODS INTAKE (FAVC)
 
-# HIGH CALORIC FOOD (FAVC)
-table(Obesity$FAVC)
 summary(Obesity$FAVC)
 
 table_FAVC <- table(
   Obesity$FAVC,
-  Obesity$Obesity
-)
+  Obesity$Obesity)
 
 table_FAVC
+
+# Is there an association between consumption of high-calorie foods (FAVC) and obesity?
 
 chisq.test(table_FAVC)
 
 ggplot(Obesity, aes(x = FAVC, fill = FAVC)) +
   geom_bar() +
   scale_fill_manual(values = c("no" = "skyblue",
-                               "yes" = "tomato")) +
-  geom_text(
-    stat = "count",
+                               "yes" = "indianred")) +
+  geom_text(stat = "count",
     aes(label = after_stat(count)),
     vjust = -0.3,
     color = "black",
-    size = 5
-  ) +
-  labs(
-    title = "Frequency of High-Calorie Food Intake",
-    x = "Frequency of High-Calorie Food Intake",
-    y = "Number of Participants"
-  ) +
+    size = 5) +
+  labs(title = "High-Calorie Food Intake",
+    x = "High-Calorie Food Intake",
+    y = "Number of Participants") +
   theme_classic() +
-  theme(
-    legend.position = "none",
-    plot.title = element_text(hjust = 0.5, face = "bold")
-  )
+  theme(legend.position = "none",
+    plot.title = element_text(hjust = 0.5, face = "bold"))
 
-#in each level
+# Does consumption of high-calorie foods differ among obesity levels?
 
-ggplot(Obesity, aes(x = Obesity, fill = FAVC)) +
-  geom_bar(position = "dodge") +
-  geom_text(
-    stat = "count",
-    aes(label = after_stat(count)),
+count_data <- Obesity %>%
+  count(Obesity, FAVC) %>%
+  mutate(x_num = as.numeric(Obesity))
+
+ggplot(count_data,
+  aes(x = x_num, y = n, fill = FAVC)) +
+  geom_col(position = position_dodge(width = 0.9),
+    width = 0.8) +
+  geom_smooth(aes(color = FAVC,
+      group = FAVC),
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE,
+    linewidth = 1.2,
+    show.legend = FALSE) +
+  geom_text(aes(label = n),
     position = position_dodge(width = 0.9),
     vjust = -0.3,
-    size = 3.5
-  ) +
-  scale_fill_manual(
-    values = c(
+    size = 3.5) +
+  scale_x_continuous(breaks = 1:7,
+    labels = levels(Obesity$Obesity)) +
+  scale_fill_manual(values = c(
       "no" = "skyblue",
-      "yes" = "tomato"
-    )
-  ) +
-  labs(
-    title = "Obesity Level and Frequency of High-Calorie Food Intake",
+      "yes" = "indianred")) +
+  scale_color_manual(values = c(
+      "no" = "steelblue",
+      "yes" = "red3")) +
+  labs(title = "Obesity Level and High-Calorie Food Intake",
     x = "Obesity Level",
     y = "Number of Participants",
-    fill = "High-Calorie Intake"
-  ) +
+    fill = "High-Calorie Intake") +
   theme_classic() +
-  theme(
-    plot.title = element_text(hjust = 0.5, face = "bold"),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-
-
-# VEGETABLES INTAKE (FCVC)
-table(Obesity$FCVC)
-summary(Obesity$FCVC)
-
-
-# Normality
-hist(Obesity$FCVC,
-     breaks = 10,
-  col = "lightblue",
-  border = "black",
-  main = "Histogram of Vegetables Intake (FCVC)",
-  xlab = "Vegetables Intake (FCVC)")
-
-
-ggplot(Obesity, aes(sample = FCVC)) +
-  stat_qq() +
-  stat_qq_line(color = "red", linewidth = 1) +
-  labs(
-    title = "Q-Q Plot of Vegetable Intake (FCVC)",
-    x = "Theoretical Quantiles",
-    y = "Sample Quantiles"
-  ) +
-  theme_classic()
-
-shapiro.test(Obesity$FCVC)
-
-# Homogeneity of Variance
-leveneTest( FCVC ~ Obesity, data = Obesity)
-
-# Kruskal-Wallis rank sum test
-kruskal.test(FCVC ~ Obesity,
-             data = Obesity)
-
-# Pairwise multiple comparisons (Games–Howell adjusted p-values)
-games_howell_test(
-  data = Obesity,
-  FCVC ~ Obesity) %>%
-print(n = Inf, width = Inf)
-
-gh1_results <- games_howell_test(
-  data = Obesity,
-  FCVC ~ Obesity)
-
-view(gh1_results)
-
-
-# Make a plot
-
-#Create the summary table
-summary_df <- Obesity %>%
-  group_by(Obesity) %>%
-  summarise(
-    Mean = mean(FAF),
-    SD = sd(FAF),
-    n = n(),
-    SE = SD / sqrt(n),
-    CI = qt(0.975, n - 1) * SE,
-    .groups = "drop")
-
-summary_df
-
-# Plot the means with 95% confidence intervals
-ggplot(summary_df, aes(x = Obesity, y = Mean)) +
-  geom_col(fill = "steelblue", width = 0.7) +
-  geom_errorbar(
-    aes(
-      ymin = Mean - CI,
-      ymax = Mean + CI),
-    width = 0.2,
-    linewidth = 0.8) +
-  labs(
-    title = "Mean Physical Activity Across Obesity Levels",
-    x = "Obesity Level",
-    y = "Mean Physical Activity (FAF)"
-  ) +
-  theme_classic() +
-  theme(
-    plot.title = element_text(
+  theme(plot.title = element_text(
       hjust = 0.5,
       face = "bold"),
     axis.text.x = element_text(
       angle = 45,
       hjust = 1))
-
-# Gender
-
-Obesity %>%
-  count(Obesity, Gender)
-
-
-# Create a NEW summary object
-summary_gender_plot <- Obesity %>%
-  group_by(Obesity, Gender) %>%
-  summarise(
-    Mean = mean(FAF, na.rm = TRUE),
-    SD = sd(FAF, na.rm = TRUE),
-    n = sum(!is.na(FAF)),
-    SE = SD / sqrt(n),
-    CI = qt(0.975, df = n - 1) * SE,
-    .groups = "drop"
-  ) %>%
-  filter(n >= 10) %>%
-  droplevels()
-
-# Check that only 12 rows remain
-print(summary_gender_plot)
-
-# Create and save the NEW plot
-gender_plot <- ggplot(
-  summary_gender_plot,
-  aes(
-    x = Obesity,
-    y = Mean,
-    fill = Gender
-  )
-) +
-  geom_col(width = 0.8) +
-
-  geom_errorbar(
-    aes(
-      ymin = pmax(0, Mean - CI),
-      ymax = Mean + CI
-    ),
-    width = 0.2,
-    linewidth = 0.8
-  ) +
-
-  facet_grid(
-    cols = vars(Gender),
-    scales = "free_x",
-    space = "free_x"
-  ) +
-
-  scale_fill_manual(
-    values = c(
-      "Female" = "hotpink",
-      "Male" = "steelblue"
-    )
-  ) +
-
-  scale_x_discrete(
-    drop = TRUE,
-    labels = c(
-      "Insufficient_Weight" = "Insufficient",
-      "Normal_Weight" = "Normal",
-      "Overweight_Level_I" = "Overweight I",
-      "Overweight_Level_II" = "Overweight II",
-      "Obesity_Type_I" = "Obesity I",
-      "Obesity_Type_II" = "Obesity II",
-      "Obesity_Type_III" = "Obesity III"
-    )
-  ) +
-
-  scale_y_continuous(
-    breaks = seq(0, 2, by = 0.5),
-    expand = expansion(mult = c(0, 0.03))
-  ) +
-
-  coord_cartesian(ylim = c(0, 2)) +
-
-  labs(
-    title = "Mean Physical Activity Across Obesity Levels by Gender",
-    x = "Obesity Level",
-    y = "Mean Physical Activity (FAF)"
-  ) +
-
-  theme_classic() +
-
-  theme(
-    legend.position = "none",
-    plot.title = element_text(
-      hjust = 0.5,
-      face = "bold"
-    ),
-    strip.text = element_text(
-      face = "bold",
-      size = 11
-    ),
-    axis.text.x = element_text(
-      angle = 45,
-      hjust = 1
-    )
-  )
-
-# Explicitly display the new plot
-print(gender_plot)
-
-
-#Age
-
-summary(Obesity$Age)
-
-ggplot(Obesity, aes(x = Obesity, y = Age, fill = Obesity)) +
-  geom_boxplot(alpha = 0.8) +
-  labs(
-    title = "Age Distribution Across Obesity Levels",
-    x = "Obesity Level",
-    y = "Age"
-  ) +
-  theme_classic() +
-  theme(
-    legend.position = "none",
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-
-
-ggplot(Obesity, aes(Age, FAF)) +
-  geom_jitter(width = 0.25, height = 0.05, alpha = 0.35) +
-  geom_smooth(method = "lm", color = "red", se = FALSE) +
-  facet_wrap(~Obesity, ncol = 2) +
-  theme_classic()
-    
-  
-
-```
-
-
-
   
 ```
 
-### Example Table
+### RESULTS
 
-| Method     | Result          | P-value |
-|------------|-----------------|---------|
-| Analysis 1 | Significant     | 0.01    |
-| Analysis 2 | Not Significant | 0.15    |
+
+The dataset included 2,111 participants distributed across seven weight categories. The largest group was Obesity Type I (351 participants), while the smallest group was Insufficient Weight (272 participants).
+
+The Chi-square test showed a significant association between family history and obesity level (χ² = 621.98, p < 0.001). Participants with a family history of obesity were much more common in the higher obesity categories.
+
+Physical activity was not normally distributed, and the assumption of equal variances was also violated. Therefore, non-parametric methods were used for the analysis. The Kruskal-Wallis test found a significant difference in physical activity across obesity levels (χ² = 88.42, p < 0.001). People with Insufficient Weight and Normal Weight had the highest average physical activity, while participants with Obesity Type III had the lowest average physical activity. Several pairwise comparisons were statistically significant according to the Games-Howell test. 
+When physical activity was compared by gender, males generally reported higher average physical activity than females within the same obesity category. However, some obesity categories contained very few participants of one gender, so those results should be interpreted with caution.
+
+The heat map showed that mean physical activity generally decreased as obesity level increased, especially among participants with a family history of obesity.
+
+The scatter plots suggested a weak relationship between age and physical activity in most obesity groups. The strongest decrease in physical activity with age was observed among participants with Obesity Type III.
+
+The Chi-square test also found a significant association between obesity and frequent consumption of high-calorie foods (χ² = 233.34, p < 0.001). Frequent high-calorie food intake was much more common among participants in the obesity categories.
 
 ## Discussion
 
-What do your results mean? How do they relate to your research question? What limitations exist? What would you do next?
+The results support my hypothesis that lifestyle factors are associated with obesity. Participants with higher obesity levels generally reported lower physical activity and were more likely to have a family history of obesity. Frequent consumption of high-calorie foods was also strongly associated with obesity.
 
 ## Conclusions
 
-Summarize your findings and their implications.
+This study found significant relationships between obesity and lifestyle factors. Participants with higher obesity levels generally had lower physical activity, were more likely to report a family history of obesity, and more frequently consumed high-calorie foods. The results suggest that obesity is influenced by several factors rather than only one behavior. 
+Limitation of this study is that the dataset is observational, so it cannot prove cause and effect. In addition, some obesity groups contained very few participants of one gender, making those comparisons less reliable.
 
 ## References:
 
