@@ -13,7 +13,7 @@ format:
 
 ## Introduction
 
-Obesity has emerged as a major public health problem. Centers for Disease Control and Prevention (CDC) reported the prevalence rate of obesity in the United States as 40.3% during 2021 - 2023 period \[1\]. Unlike acute illnesses, the health consequences of obesity typically develop gradually. Obesity accelerates biological aging by promoting chronic low-grade inflammation, oxidative stress, and mitochondrial dysfunction, all of which contribute to the earlier onset of age-related diseases \[2\]. It increases the risk of numerous chronic conditions, including type 2 diabetes mellitus, cardiovascular disease, metabolic syndrome, hypertension, and certain types of cancers \[3, 4\]. In this project I want to test the relationship between lifestyle factors and obesity. I expect for example that regular physical activity is associated with lower obesity levels. Hypothesis (H1): Healthier lifestyle habits are associated with lower obesity rates. Null hypothesis (H0): There is no correlation between lifestyle and obesity. The findings may contribute to a better understanding of the problem and alter public health strategies.
+Obesity has emerged as a major public health problem. Centers for Disease Control and Prevention (CDC) reported the prevalence rate of obesity in the United States as 40.3% during 2021 - 2023 period \[1\]. Unlike acute illnesses, the health consequences of obesity typically develop gradually. Obesity accelerates biological aging by promoting chronic low-grade inflammation, oxidative stress, and mitochondrial dysfunction, all of which contribute to the earlier onset of age-related diseases \[2\]. It increases the risk of numerous chronic conditions, including type 2 diabetes mellitus, cardiovascular disease, metabolic syndrome, hypertension, and certain types of cancers \[3, 4\]. In this project I hypothesize  that healthier lifestyle habits are associated with lower obesity rates. The findings may contribute to a better understanding of the problem and alter public health strategies.
 
 ## Methods
 
@@ -121,11 +121,16 @@ ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
 # The Chi-square test showed a significant association between family history and obesity level (χ² = 621.98, p < 0.001). Participants with a family history of obesity were much more common in the higher obesity categories.
 ```
 
-### PHYSICAL ACTIVITY. Was the physical activity data normally distributed?
+### PHYSICAL ACTIVITY.
 
 ```{r}
 summary(Obesity$FAF)
+```
 
+
+#### Was the physical activity data normally distributed?
+
+```{r}
 hist(Obesity$FAF,
      breaks = 10,
   col = "skyblue",
@@ -283,7 +288,6 @@ print(gender_plot)
 # Males generally had higher average physical activity than females within the same obesity category. Some obesity categories contained very few participants of one gender, and was excluded from the plot.
 ```
 
-
 #### How do physical activity levels vary across obesity levels and family history groups?
 
 ```{r}
@@ -334,11 +338,16 @@ ggplot(Obesity, aes(Age, FAF)) +
 ```
 
 
-### HIGH-CALORIE FOODS INTAKE (FAVC). Is the consumption of high-calorie foods (FAVC) associated with obesity level?
+### HIGH-CALORIE FOODS INTAKE (FAVC). 
 
 ```{r}
 summary(Obesity$FAVC)
+```
 
+
+#### Is the consumption of high-calorie foods (FAVC) associated with obesity level?
+
+```{r}
 table_FAVC <- table(
   Obesity$FAVC,
   Obesity$Obesity)
