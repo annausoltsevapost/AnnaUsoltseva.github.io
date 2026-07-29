@@ -119,6 +119,8 @@ ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
     axis.text.x = element_text(angle = 45, hjust = 1))
 
 # The Chi-square test showed a significant association between family history and obesity level (χ² = 621.98, p < 0.001). Participants with a family history of obesity were much more common in the higher obesity categories.
+
+# Family history may reflect not only genetic predisposition but also shared family habits and environmental influences. Eating behaviors, physical activity patterns, and other lifestyle habits developed during childhood may persist into adulthood and influence the risk of obesity.
 ```
 
 ### PHYSICAL ACTIVITY (FAF).
