@@ -121,7 +121,7 @@ ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
 # The Chi-square test showed a significant association between family history and obesity level (χ² = 621.98, p < 0.001). Participants with a family history of obesity were much more common in the higher obesity categories.
 ```
 
-### PHYSICAL ACTIVITY.
+### PHYSICAL ACTIVITY (FAF).
 
 ```{r}
 summary(Obesity$FAF)
