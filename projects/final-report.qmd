@@ -19,6 +19,8 @@ The dataset included 2,111 participants and 17 variables related to demographics
 
 ## Results
 
+## LIBRARY
+
 ```{r}
 #| warning: false
 
@@ -29,9 +31,11 @@ library(corrplot)
 library(GGally)
 library(car)
 library(rstatix)
+```
 
-# Structure of the dataset, summary statistics, missing values, and the distribution of obesity levels. 
+## Structure of the dataset, summary statistics, missing values, and the distribution of obesity levels. 
 
+```{r}
 getwd()
 setwd("/Users/kulkins/Desktop/R_s/AnnaUsoltseva.github.io/projects")
 list.files()
@@ -73,36 +77,23 @@ ggplot(Obesity, aes(x = Obesity)) +
   theme_classic() +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"),
     axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
+## FAMILY HISTORY.
 
-# FAMILY HISTORY. 
- 
+```{r}
 table(Obesity$family_history)
 summary(Obesity$family_history)
 
 table_history <- table(Obesity$family_history, Obesity$Obesity)
 table_history
+```
 
-# Was there an association between obesity level and family history of obesity?
 
+## FAMILY HISTORY. How did family history of obesity vary across the different obesity levels?
+
+```{r}
 chisq.test(table_history)
-ggplot(Obesity, aes(x = family_history, fill = family_history)) +
-  geom_bar() +
-  scale_fill_manual(values = c("no" = "skyblue",
-                               "yes" = "indianred")) +
-  geom_text(stat = "count",
-    aes(label = after_stat(count)),
-    vjust = -0.3,
-    color = "black",
-    size = 5) +
-  labs(title = "Family History of Obesity",
-    x = "Family History",
-    y = "Number of Participants") +
-  theme_classic() +
-  theme(legend.position = "none",
-    plot.title = element_text(hjust = 0.5, face = "bold"))
-
-# How did family history of obesity vary across the different obesity levels?
 
 ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
   geom_bar(position = "dodge") +
@@ -114,7 +105,7 @@ ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
   scale_fill_manual(values = c(
       "no" = "skyblue",
       "yes" = "indianred")) +
-  labs(title = "Obesity Level by Family History",
+  labs(title = "Obesity Level and Family History",
     x = "Obesity Level",
     y = "Number of Participants",
     fill = "Family History") +
@@ -122,12 +113,13 @@ ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"),
     axis.text.x = element_text(angle = 45, hjust = 1))
 
+# The Chi-square test showed a significant association between family history and obesity level (χ² = 621.98, p < 0.001). Participants with a family history of obesity were much more common in the higher obesity categories.
+```
 
-#PHYSICAL ACTIVITY
+## PHYSICAL ACTIVITY. Was the physical activity data normally distributed?
 
+```{r}
 summary(Obesity$FAF)
-
-# Was the physical activity data normally distributed?
 
 hist(Obesity$FAF,
      breaks = 10,
@@ -152,6 +144,12 @@ shapiro.test(Obesity$FAF)
 
 leveneTest(FAF ~ Obesity, data = Obesity)
 
+#Physical activity was not normally distributed, and the assumption of equal variances was also violated. Therefore, non-parametric methods were used for the analysis. 
+```
+
+## PHYSICAL ACTIVITY. How do the physical activity levels compare across obesity levels?
+
+```{r}
 # Was there a significant difference in physical activity across obesity levels?
 
 kruskal.test(FAF ~ Obesity,
@@ -170,7 +168,6 @@ gh_results <- games_howell_test(
 
 view(gh_results)
 
-
 # Summary Table of Physical Activity by Obesity Level
 summary_df <- Obesity %>%
   group_by(Obesity) %>%
@@ -182,9 +179,6 @@ summary_df <- Obesity %>%
     .groups = "drop")
 summary_df
 
-
-# How do the mean physical activity levels with 95% confidence intervals compare across obesity levels?
-
 ggplot(summary_df, aes(x = Obesity, y = Mean)) +
   geom_col(fill = "lightgreen", width = 0.7) +
   geom_errorbar(
@@ -194,7 +188,7 @@ ggplot(summary_df, aes(x = Obesity, y = Mean)) +
     width = 0.2,
     linewidth = 0.8) +
   labs(
-    title = "Mean Physical Activity Across Obesity Levels",
+    title = "Physical Activity Across Obesity Levels",
     x = "Obesity Level",
     y = "Mean Physical Activity (FAF)"
   ) +
@@ -207,6 +201,14 @@ ggplot(summary_df, aes(x = Obesity, y = Mean)) +
       angle = 45,
       hjust = 1))
 
+# People with Insufficient Weight and Normal Weight had the highest average physical activity, while participants with Obesity Type III had the lowest average physical activity. Several pairwise comparisons were statistically significant according to the Games-Howell test. 
+```
+
+
+## PHYSICAL ACTIVITY. How do physical activity levels compare across obesity levels and between genders?
+
+```{r}
+#| warning: false
 # Gender differences
 Obesity %>%
   count(Obesity, Gender)
@@ -224,8 +226,6 @@ summary_gender_plot <- Obesity %>%
   droplevels()
 
 print(summary_gender_plot)
-
-# How do physical activity levels and their 95% confidence intervals compare across obesity levels and between genders?
 
 gender_plot <- ggplot(summary_gender_plot,
   aes(x = Obesity,
@@ -275,8 +275,14 @@ coord_cartesian(ylim = c(0, 2)) + labs(
 
 print(gender_plot)
 
+# Males generally had higher average physical activity than females within the same obesity category. Some obesity categories contained very few participants of one gender, and was excluded from the plot.
+```
 
-# How do physical activity levels vary across obesity levels and family history groups?
+
+## PHYSICAL ACTIVITY. How do physical activity levels vary across obesity levels and family history groups?
+
+```{r}
+# 
 
 heat_data <- Obesity %>%
   group_by(Obesity, family_history) %>%
@@ -304,9 +310,13 @@ ggplot(heat_data,
     fill = "Mean FAF") +
   theme_classic()
 
+# The heat map showed that mean physical activity generally decreased as obesity level increased, especially among participants with a family history of obesity.
+```
 
-# How does physical activity vary with age across obesity levels?
 
+## PHYSICAL ACTIVITY. How does physical activity vary with age across obesity levels?
+
+```{r}
 summary(Obesity$Age)
 
 ggplot(Obesity, aes(Age, FAF)) +
@@ -314,10 +324,14 @@ ggplot(Obesity, aes(Age, FAF)) +
   geom_smooth(method = "lm", color = "red", se = FALSE) +
   facet_wrap(~Obesity, ncol = 2) +
   theme_classic()
-    
 
-# HIGH-CALORIE FOODS INTAKE (FAVC)
+# The scatter plots showed a weak relationship between age and physical activity across most obesity groups. However, the majority of participants were between 20 and 40 years of age, resulting in a limited sample size for older age groups. Therefore, conclusions regarding older participants should be interpreted with caution. The strongest age-related decline in physical activity was observed among participants with Obesity Type III.
+```
 
+
+## HIGH-CALORIE FOODS INTAKE (FAVC). Is the consumption of high-calorie foods (FAVC) associated with obesity level?
+
+```{r}
 summary(Obesity$FAVC)
 
 table_FAVC <- table(
@@ -326,27 +340,7 @@ table_FAVC <- table(
 
 table_FAVC
 
-# Is there an association between consumption of high-calorie foods (FAVC) and obesity?
-
 chisq.test(table_FAVC)
-
-ggplot(Obesity, aes(x = FAVC, fill = FAVC)) +
-  geom_bar() +
-  scale_fill_manual(values = c("no" = "skyblue",
-                               "yes" = "indianred")) +
-  geom_text(stat = "count",
-    aes(label = after_stat(count)),
-    vjust = -0.3,
-    color = "black",
-    size = 5) +
-  labs(title = "High-Calorie Food Intake",
-    x = "High-Calorie Food Intake",
-    y = "Number of Participants") +
-  theme_classic() +
-  theme(legend.position = "none",
-    plot.title = element_text(hjust = 0.5, face = "bold"))
-
-# Does consumption of high-calorie foods differ among obesity levels?
 
 count_data <- Obesity %>%
   count(Obesity, FAVC) %>%
@@ -386,32 +380,16 @@ ggplot(count_data,
     axis.text.x = element_text(
       angle = 45,
       hjust = 1))
-  
+
+# The Chi-square test also found a significant association between obesity and consumption of high-calorie foods (χ² = 233.34, p < 0.001). High-calorie food intake was more common among participants in the obesity categories.
 ```
 
-### RESULTS
 
-
-The dataset included 2,111 participants distributed across seven weight categories. The largest group was Obesity Type I (351 participants), while the smallest group was Insufficient Weight (272 participants).
-
-The Chi-square test showed a significant association between family history and obesity level (χ² = 621.98, p < 0.001). Participants with a family history of obesity were much more common in the higher obesity categories.
-
-Physical activity was not normally distributed, and the assumption of equal variances was also violated. Therefore, non-parametric methods were used for the analysis. The Kruskal-Wallis test found a significant difference in physical activity across obesity levels (χ² = 88.42, p < 0.001). People with Insufficient Weight and Normal Weight had the highest average physical activity, while participants with Obesity Type III had the lowest average physical activity. Several pairwise comparisons were statistically significant according to the Games-Howell test. 
-When physical activity was compared by gender, males generally reported higher average physical activity than females within the same obesity category. However, some obesity categories contained very few participants of one gender, so those results should be interpreted with caution.
-
-The heat map showed that mean physical activity generally decreased as obesity level increased, especially among participants with a family history of obesity.
-
-The scatter plots suggested a weak relationship between age and physical activity in most obesity groups. The strongest decrease in physical activity with age was observed among participants with Obesity Type III.
-
-The Chi-square test also found a significant association between obesity and frequent consumption of high-calorie foods (χ² = 233.34, p < 0.001). Frequent high-calorie food intake was much more common among participants in the obesity categories.
-
-## Discussion
-
-The results support my hypothesis that lifestyle factors are associated with obesity. Participants with higher obesity levels generally reported lower physical activity and were more likely to have a family history of obesity. Frequent consumption of high-calorie foods was also strongly associated with obesity.
 
 ## Conclusions
 
-This study found significant relationships between obesity and lifestyle factors. Participants with higher obesity levels generally had lower physical activity, were more likely to report a family history of obesity, and more frequently consumed high-calorie foods. The results suggest that obesity is influenced by several factors rather than only one behavior. 
+The results suggest that obesity is influenced by several factors. Participants with higher obesity levels generally had lower physical activity, were more likely to report a family history of obesity, and more frequently consumed high-calorie foods.
+
 Limitation of this study is that the dataset is observational, so it cannot prove cause and effect. In addition, some obesity groups contained very few participants of one gender, making those comparisons less reliable.
 
 ## References:
@@ -421,7 +399,6 @@ Limitation of this study is that the dataset is observational, so it cannot prov
 3.  Jin X, Qiu T, Li L, Yu R, Chen X, Li C, et al. (2023) Pathophysiology of obesity and its associated diseases. Acta Pharm Sin B 13, 2403-2424.
 4.  Scully T, Ettela A, LeRoith D, Gallagher EJ (2021) Obesity, type 2 diabetes, and cancer risk. Front Oncol 10, 615375. Dataset: Obesity Prediction https://www.kaggle.com/datasets/ruchikakumbhar/obesity-prediction
 
-Add any references to papers, data sources, or resources you used.
 
 ------------------------------------------------------------------------
 
