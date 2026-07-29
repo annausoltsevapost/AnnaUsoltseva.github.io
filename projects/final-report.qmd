@@ -19,7 +19,7 @@ The dataset included 2,111 participants and 17 variables related to demographics
 
 ## Results
 
-## LIBRARY
+### Library
 
 ```{r}
 #| warning: false
@@ -33,7 +33,7 @@ library(car)
 library(rstatix)
 ```
 
-## Structure of the dataset, summary statistics, missing values, and the distribution of obesity levels. 
+### Structure of the dataset, summary statistics, missing values, and the distribution of obesity levels. 
 
 ```{r}
 getwd()
@@ -79,7 +79,7 @@ ggplot(Obesity, aes(x = Obesity)) +
     axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-## FAMILY HISTORY.
+### FAMILY HISTORY.
 
 ```{r}
 table(Obesity$family_history)
@@ -90,7 +90,7 @@ table_history
 ```
 
 
-## FAMILY HISTORY. How did family history of obesity vary across the different obesity levels?
+#### How did family history of obesity vary across the different obesity levels?
 
 ```{r}
 chisq.test(table_history)
@@ -116,7 +116,7 @@ ggplot(Obesity, aes(x = Obesity, fill = family_history)) +
 # The Chi-square test showed a significant association between family history and obesity level (χ² = 621.98, p < 0.001). Participants with a family history of obesity were much more common in the higher obesity categories.
 ```
 
-## PHYSICAL ACTIVITY. Was the physical activity data normally distributed?
+### PHYSICAL ACTIVITY. Was the physical activity data normally distributed?
 
 ```{r}
 summary(Obesity$FAF)
@@ -147,7 +147,7 @@ leveneTest(FAF ~ Obesity, data = Obesity)
 #Physical activity was not normally distributed, and the assumption of equal variances was also violated. Therefore, non-parametric methods were used for the analysis. 
 ```
 
-## PHYSICAL ACTIVITY. How do the physical activity levels compare across obesity levels?
+#### How do the physical activity levels compare across obesity levels?
 
 ```{r}
 # Was there a significant difference in physical activity across obesity levels?
@@ -205,7 +205,7 @@ ggplot(summary_df, aes(x = Obesity, y = Mean)) +
 ```
 
 
-## PHYSICAL ACTIVITY. How do physical activity levels compare across obesity levels and between genders?
+#### How do physical activity levels compare across obesity levels and between genders?
 
 ```{r}
 #| warning: false
@@ -279,7 +279,7 @@ print(gender_plot)
 ```
 
 
-## PHYSICAL ACTIVITY. How do physical activity levels vary across obesity levels and family history groups?
+#### How do physical activity levels vary across obesity levels and family history groups?
 
 ```{r}
 # 
@@ -314,7 +314,7 @@ ggplot(heat_data,
 ```
 
 
-## PHYSICAL ACTIVITY. How does physical activity vary with age across obesity levels?
+#### How does physical activity vary with age across obesity levels?
 
 ```{r}
 summary(Obesity$Age)
@@ -329,7 +329,7 @@ ggplot(Obesity, aes(Age, FAF)) +
 ```
 
 
-## HIGH-CALORIE FOODS INTAKE (FAVC). Is the consumption of high-calorie foods (FAVC) associated with obesity level?
+### HIGH-CALORIE FOODS INTAKE (FAVC). Is the consumption of high-calorie foods (FAVC) associated with obesity level?
 
 ```{r}
 summary(Obesity$FAVC)

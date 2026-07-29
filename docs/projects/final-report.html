@@ -163,17 +163,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#library" id="toc-library" class="nav-link" data-scroll-target="#library">LIBRARY</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#library" id="toc-library" class="nav-link" data-scroll-target="#library">Library</a></li>
   <li><a href="#structure-of-the-dataset-summary-statistics-missing-values-and-the-distribution-of-obesity-levels." id="toc-structure-of-the-dataset-summary-statistics-missing-values-and-the-distribution-of-obesity-levels." class="nav-link" data-scroll-target="#structure-of-the-dataset-summary-statistics-missing-values-and-the-distribution-of-obesity-levels.">Structure of the dataset, summary statistics, missing values, and the distribution of obesity levels.</a></li>
   <li><a href="#family-history." id="toc-family-history." class="nav-link" data-scroll-target="#family-history.">FAMILY HISTORY.</a></li>
-  <li><a href="#family-history.-how-did-family-history-of-obesity-vary-across-the-different-obesity-levels" id="toc-family-history.-how-did-family-history-of-obesity-vary-across-the-different-obesity-levels" class="nav-link" data-scroll-target="#family-history.-how-did-family-history-of-obesity-vary-across-the-different-obesity-levels">FAMILY HISTORY. How did family history of obesity vary across the different obesity levels?</a></li>
   <li><a href="#physical-activity.-was-the-physical-activity-data-normally-distributed" id="toc-physical-activity.-was-the-physical-activity-data-normally-distributed" class="nav-link" data-scroll-target="#physical-activity.-was-the-physical-activity-data-normally-distributed">PHYSICAL ACTIVITY. Was the physical activity data normally distributed?</a></li>
-  <li><a href="#physical-activity.-how-do-the-physical-activity-levels-compare-across-obesity-levels" id="toc-physical-activity.-how-do-the-physical-activity-levels-compare-across-obesity-levels" class="nav-link" data-scroll-target="#physical-activity.-how-do-the-physical-activity-levels-compare-across-obesity-levels">PHYSICAL ACTIVITY. How do the physical activity levels compare across obesity levels?</a></li>
-  <li><a href="#physical-activity.-how-do-physical-activity-levels-compare-across-obesity-levels-and-between-genders" id="toc-physical-activity.-how-do-physical-activity-levels-compare-across-obesity-levels-and-between-genders" class="nav-link" data-scroll-target="#physical-activity.-how-do-physical-activity-levels-compare-across-obesity-levels-and-between-genders">PHYSICAL ACTIVITY. How do physical activity levels compare across obesity levels and between genders?</a></li>
-  <li><a href="#physical-activity.-how-do-physical-activity-levels-vary-across-obesity-levels-and-family-history-groups" id="toc-physical-activity.-how-do-physical-activity-levels-vary-across-obesity-levels-and-family-history-groups" class="nav-link" data-scroll-target="#physical-activity.-how-do-physical-activity-levels-vary-across-obesity-levels-and-family-history-groups">PHYSICAL ACTIVITY. How do physical activity levels vary across obesity levels and family history groups?</a></li>
-  <li><a href="#physical-activity.-how-does-physical-activity-vary-with-age-across-obesity-levels" id="toc-physical-activity.-how-does-physical-activity-vary-with-age-across-obesity-levels" class="nav-link" data-scroll-target="#physical-activity.-how-does-physical-activity-vary-with-age-across-obesity-levels">PHYSICAL ACTIVITY. How does physical activity vary with age across obesity levels?</a></li>
   <li><a href="#high-calorie-foods-intake-favc.-is-the-consumption-of-high-calorie-foods-favc-associated-with-obesity-level" id="toc-high-calorie-foods-intake-favc.-is-the-consumption-of-high-calorie-foods-favc-associated-with-obesity-level" class="nav-link" data-scroll-target="#high-calorie-foods-intake-favc.-is-the-consumption-of-high-calorie-foods-favc-associated-with-obesity-level">HIGH-CALORIE FOODS INTAKE (FAVC). Is the consumption of high-calorie foods (FAVC) associated with obesity level?</a></li>
+  </ul></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References:</a></li>
   </ul></li>
@@ -227,9 +224,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-</section>
-<section id="library" class="level2">
-<h2 class="anchored" data-anchor-id="library">LIBRARY</h2>
+<section id="library" class="level3">
+<h3 class="anchored" data-anchor-id="library">Library</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -240,8 +236,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="structure-of-the-dataset-summary-statistics-missing-values-and-the-distribution-of-obesity-levels." class="level2">
-<h2 class="anchored" data-anchor-id="structure-of-the-dataset-summary-statistics-missing-values-and-the-distribution-of-obesity-levels.">Structure of the dataset, summary statistics, missing values, and the distribution of obesity levels.</h2>
+<section id="structure-of-the-dataset-summary-statistics-missing-values-and-the-distribution-of-obesity-levels." class="level3">
+<h3 class="anchored" data-anchor-id="structure-of-the-dataset-summary-statistics-missing-values-and-the-distribution-of-obesity-levels.">Structure of the dataset, summary statistics, missing values, and the distribution of obesity levels.</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -391,8 +387,8 @@ Insufficient_Weight       Normal_Weight  Overweight_Level_I Overweight_Level_II
 </div>
 </div>
 </section>
-<section id="family-history." class="level2">
-<h2 class="anchored" data-anchor-id="family-history.">FAMILY HISTORY.</h2>
+<section id="family-history." class="level3">
+<h3 class="anchored" data-anchor-id="family-history.">FAMILY HISTORY.</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Obesity<span class="sc">$</span>family_history)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -418,9 +414,8 @@ Insufficient_Weight       Normal_Weight  Overweight_Level_I Overweight_Level_II
   yes            344             296              324</code></pre>
 </div>
 </div>
-</section>
-<section id="family-history.-how-did-family-history-of-obesity-vary-across-the-different-obesity-levels" class="level2">
-<h2 class="anchored" data-anchor-id="family-history.-how-did-family-history-of-obesity-vary-across-the-different-obesity-levels">FAMILY HISTORY. How did family history of obesity vary across the different obesity levels?</h2>
+<section id="how-did-family-history-of-obesity-vary-across-the-different-obesity-levels" class="level4">
+<h4 class="anchored" data-anchor-id="how-did-family-history-of-obesity-vary-across-the-different-obesity-levels">How did family history of obesity vary across the different obesity levels?</h4>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(table_history)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -457,8 +452,9 @@ X-squared = 621.98, df = 6, p-value &lt; 2.2e-16</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The Chi-square test showed a significant association between family history and obesity level (χ² = 621.98, p &lt; 0.001). Participants with a family history of obesity were much more common in the higher obesity categories.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="physical-activity.-was-the-physical-activity-data-normally-distributed" class="level2">
-<h2 class="anchored" data-anchor-id="physical-activity.-was-the-physical-activity-data-normally-distributed">PHYSICAL ACTIVITY. Was the physical activity data normally distributed?</h2>
+</section>
+<section id="physical-activity.-was-the-physical-activity-data-normally-distributed" class="level3">
+<h3 class="anchored" data-anchor-id="physical-activity.-was-the-physical-activity-data-normally-distributed">PHYSICAL ACTIVITY. Was the physical activity data normally distributed?</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Obesity<span class="sc">$</span>FAF)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -514,9 +510,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Physical activity was not normally distributed, and the assumption of equal variances was also violated. Therefore, non-parametric methods were used for the analysis. </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="physical-activity.-how-do-the-physical-activity-levels-compare-across-obesity-levels" class="level2">
-<h2 class="anchored" data-anchor-id="physical-activity.-how-do-the-physical-activity-levels-compare-across-obesity-levels">PHYSICAL ACTIVITY. How do the physical activity levels compare across obesity levels?</h2>
+<section id="how-do-the-physical-activity-levels-compare-across-obesity-levels" class="level4">
+<h4 class="anchored" data-anchor-id="how-do-the-physical-activity-levels-compare-across-obesity-levels">How do the physical activity levels compare across obesity levels?</h4>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Was there a significant difference in physical activity across obesity levels?</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -643,8 +638,8 @@ Kruskal-Wallis chi-squared = 88.42, df = 6, p-value &lt; 2.2e-16</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># People with Insufficient Weight and Normal Weight had the highest average physical activity, while participants with Obesity Type III had the lowest average physical activity. Several pairwise comparisons were statistically significant according to the Games-Howell test. </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="physical-activity.-how-do-physical-activity-levels-compare-across-obesity-levels-and-between-genders" class="level2">
-<h2 class="anchored" data-anchor-id="physical-activity.-how-do-physical-activity-levels-compare-across-obesity-levels-and-between-genders">PHYSICAL ACTIVITY. How do physical activity levels compare across obesity levels and between genders?</h2>
+<section id="how-do-physical-activity-levels-compare-across-obesity-levels-and-between-genders" class="level4">
+<h4 class="anchored" data-anchor-id="how-do-physical-activity-levels-compare-across-obesity-levels-and-between-genders">How do physical activity levels compare across obesity levels and between genders?</h4>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gender differences</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>Obesity <span class="sc">%&gt;%</span></span>
@@ -753,8 +748,8 @@ Kruskal-Wallis chi-squared = 88.42, df = 6, p-value &lt; 2.2e-16</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Males generally had higher average physical activity than females within the same obesity category. Some obesity categories contained very few participants of one gender, and was excluded from the plot.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="physical-activity.-how-do-physical-activity-levels-vary-across-obesity-levels-and-family-history-groups" class="level2">
-<h2 class="anchored" data-anchor-id="physical-activity.-how-do-physical-activity-levels-vary-across-obesity-levels-and-family-history-groups">PHYSICAL ACTIVITY. How do physical activity levels vary across obesity levels and family history groups?</h2>
+<section id="how-do-physical-activity-levels-vary-across-obesity-levels-and-family-history-groups" class="level4">
+<h4 class="anchored" data-anchor-id="how-do-physical-activity-levels-vary-across-obesity-levels-and-family-history-groups">How do physical activity levels vary across obesity levels and family history groups?</h4>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -793,8 +788,8 @@ Kruskal-Wallis chi-squared = 88.42, df = 6, p-value &lt; 2.2e-16</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The heat map showed that mean physical activity generally decreased as obesity level increased, especially among participants with a family history of obesity.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="physical-activity.-how-does-physical-activity-vary-with-age-across-obesity-levels" class="level2">
-<h2 class="anchored" data-anchor-id="physical-activity.-how-does-physical-activity-vary-with-age-across-obesity-levels">PHYSICAL ACTIVITY. How does physical activity vary with age across obesity levels?</h2>
+<section id="how-does-physical-activity-vary-with-age-across-obesity-levels" class="level4">
+<h4 class="anchored" data-anchor-id="how-does-physical-activity-vary-with-age-across-obesity-levels">How does physical activity vary with age across obesity levels?</h4>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Obesity<span class="sc">$</span>Age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -819,8 +814,9 @@ Kruskal-Wallis chi-squared = 88.42, df = 6, p-value &lt; 2.2e-16</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The scatter plots showed a weak relationship between age and physical activity across most obesity groups. However, the majority of participants were between 20 and 40 years of age, resulting in a limited sample size for older age groups. Therefore, conclusions regarding older participants should be interpreted with caution. The strongest age-related decline in physical activity was observed among participants with Obesity Type III.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="high-calorie-foods-intake-favc.-is-the-consumption-of-high-calorie-foods-favc-associated-with-obesity-level" class="level2">
-<h2 class="anchored" data-anchor-id="high-calorie-foods-intake-favc.-is-the-consumption-of-high-calorie-foods-favc-associated-with-obesity-level">HIGH-CALORIE FOODS INTAKE (FAVC). Is the consumption of high-calorie foods (FAVC) associated with obesity level?</h2>
+</section>
+<section id="high-calorie-foods-intake-favc.-is-the-consumption-of-high-calorie-foods-favc-associated-with-obesity-level" class="level3">
+<h3 class="anchored" data-anchor-id="high-calorie-foods-intake-favc.-is-the-consumption-of-high-calorie-foods-favc-associated-with-obesity-level">HIGH-CALORIE FOODS INTAKE (FAVC). Is the consumption of high-calorie foods (FAVC) associated with obesity level?</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Obesity<span class="sc">$</span>FAVC)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -897,6 +893,7 @@ X-squared = 233.34, df = 6, p-value &lt; 2.2e-16</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The Chi-square test also found a significant association between obesity and consumption of high-calorie foods (χ² = 233.34, p &lt; 0.001). High-calorie food intake was more common among participants in the obesity categories.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
 </section>
 <section id="conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
