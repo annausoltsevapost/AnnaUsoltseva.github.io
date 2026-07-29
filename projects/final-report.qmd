@@ -2,6 +2,12 @@
 title: "Final Report: [Obesity]"
 date: 2026-06-04
 author: "Anna Usoltseva"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 4
 ---
 
 # Final Report: \[Obesity\]
